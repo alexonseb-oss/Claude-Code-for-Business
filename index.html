@@ -205,10 +205,16 @@ body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--b
 .tier-avg-label { font-size: 0.8rem; color: var(--gray-light); flex: 1; }
 .tier-avg-val { font-weight: 700; font-size: 0.9rem; }
 .assessment-nav { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
-.progress-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-.progress-track { flex: 1; height: 4px; background: var(--gray-dark); border-radius: 2px; overflow: hidden; }
-.progress-fill { height: 100%; background: var(--primary); border-radius: 2px; transition: width 0.3s; }
-.progress-label { font-size: 0.75rem; color: var(--gray); font-weight: 600; min-width: 80px; text-align: right; }
+/* Progress-bar: fixed am unteren Rand des Viewports, sticky während des Scrollens */
+.progress-bar { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 12px; padding: 14px 28px; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-top: 1px solid var(--gray-dark); z-index: 99; margin: 0; }
+.progress-track { flex: 1; height: 6px; background: var(--gray-dark); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.3s; }
+.progress-label { font-size: 0.875rem; color: var(--gray-light); font-weight: 700; min-width: 80px; text-align: right; }
+/* Body padding-bottom, damit Content nicht hinter der fixen Progress-Leiste verschwindet */
+body { padding-bottom: 64px; }
+/* "Ergebnisse"-Link in der Top-Nav rot hervorheben (CTA, weil Bottom-Button entfernt) */
+.nav-links a[onclick*="results"] { color: #FF1A1A; font-weight: 700; }
+.nav-links a[onclick*="results"]:hover { color: #E01515; }
 
 /* Results */
 .results-header { text-align: center; margin-bottom: 40px; }
@@ -378,7 +384,6 @@ body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--b
 </head>
 <body>
 <nav class="nav">
-  <div class="nav-logo">AI PERFORMANCE ACADEMY</div>
   <div class="nav-links">
     <a href="#" onclick="showScreen('landing')">Start</a>
     <a href="#" onclick="showScreen('assessment')">Assessment</a>
@@ -440,7 +445,6 @@ body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--b
       <div class="assessment-nav">
         <button class="btn-secondary" onclick="showScreen('landing')">&#8592; Zurueck</button>
         <button class="btn-reset" onclick="resetAssessment()">&#8634; Zuruecksetzen</button>
-        <button class="btn-primary" onclick="showResults()">Ergebnisse anzeigen &#8594;</button>
       </div>
     </div>
     <div class="radar-sidebar">
