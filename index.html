@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code for Business Assessment – AI Performance Academy</title>
+<meta property="og:title" content="Claude Code for Business Assessment – AI Performance Academy">
+<meta property="og:description" content="Bewerte 25 Claude Code Bausteine in 5 Kategorien. Erkenne deine Staerken, Luecken und erfahre, wie du zum Power User wirst.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://holgergelhausen.github.io/ai-performance-academy-assets/og-assessment.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Code for Business Assessment – AI Performance Academy">
+<meta name="twitter:description" content="Bewerte 25 Claude Code Bausteine in 5 Kategorien. Erkenne deine Staerken, Luecken und erfahre, wie du zum Power User wirst.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='#FF1A1A'/><text x='16' y='24' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='22'>C</text></svg>">
+<!-- Version: 2.1.0 - Claude Code for Business Assessment Light Theme – AI Performance Academy -->
+<!-- Changelog:
+  v2.1.0 (2026-02-10)
+    - Fix: UNDEFINED bei Thesen-Header (thesenHeader → thesesHeader)
+    - Fix: --gray-light von #767D8C auf #5F6673 (WCAG AA Kontrast 5.5:1)
+    - Bessere Lesbarkeit: Beschreibungen, Checkbox-Texte, KI-Agent-Tipps
+  v2.0.0 (2026-02-10)
+    - Light Theme: Weisser Hintergrund, dunkler Text
+    - Navigation: Neue Nav-Bar mit Links statt Logo-Bar
+    - Externe CSS: AI-Performance-Academy-Farbpalette.css
+    - Shadows und Hover-States fuer Light Theme angepasst
+  v1.2.0 (2026-02-09)
+    - Design angepasst an ai-pa.ai: Primary Color #FF1A1A
+    - AI Performance Academy Branding konsistent
+  v1.1.0 (2026-02-09)
+    - Umbenannt: Claude Code Mastery → Claude Code for Business
+    - Business-Fokus im Branding
+  v1.0.0 (2026-02-09)
+    - Initial Release: 25 Bausteine, 6 Needs, 5 Tiers
+    - Fokus auf Claude Code Skills, Agents, Hooks und MCP
+    - Generiert mit Assessment Engine v5.0.0
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="AI-Performance-Academy-Farbpalette.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+/* Assessment Engine Styles v6.0.0 – LIGHT THEME */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #000000; --bg: #FFFFFF; --bg-card: #FFFFFF; --bg-card-hover: #F7F8FA;
+  --primary: #FF1A1A; --primary-light: #E01515; --primary-dark: #CC1515;
+  --gray: #767D8C; --gray-light: #5F6673; --gray-dark: #D9DDE3;
+  --white: #000000; --white-muted: #1F1F1F;
+  --tier-strategic: #3B82F6; --tier-content: #22C55E; --tier-channel: #F97316;
+  --tier-conversion: #EF4444; --tier-optimization: #A855F7;
+  --score-low: #EF4444; --score-mid: #F59E0B; --score-high: #22C55E;
+}
+body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--bg); color: var(--white-muted); min-height: 100vh; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.screen { display: none; min-height: 100vh; padding: 80px 0 40px; animation: fadeIn 0.4s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Nav */
+.nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; border-bottom: 1px solid var(--gray-dark); height: 60px; }
+.nav-logo { font-size: 14px; font-weight: 800; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--gray); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--primary); }
+.logo-bar { display: none; }
+
+/* Landing */
+.landing-hero { text-align: center; padding: 60px 0 40px; }
+.landing-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.15; }
+.landing-hero h1 .accent { color: var(--primary); }
+.landing-hero .subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--gray-light); max-width: 600px; margin: 0 auto 40px; font-weight: 400; }
+.landing-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 48px; flex-wrap: wrap; }
+.landing-stat .number { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
+.landing-stat .label { font-size: 0.85rem; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; }
+.landing-stat { text-align: center; }
+.pyramid { max-width: 500px; margin: 0 auto 48px; }
+.pyramid-tier { display: flex; align-items: center; justify-content: center; padding: 14px 20px; margin: 4px auto; border-radius: 8px; font-weight: 700; font-size: 0.9rem; color: white; transition: transform 0.2s; cursor: default; }
+.pyramid-tier:hover { transform: scale(1.02); }
+.pyramid-tier.t-optimization { width: 50%; background: var(--tier-optimization); cursor: pointer; }
+.pyramid-tier.t-conversion { width: 62%; background: var(--tier-conversion); cursor: pointer; }
+.pyramid-tier.t-channel { width: 74%; background: var(--tier-channel); cursor: pointer; }
+.pyramid-tier.t-content { width: 86%; background: var(--tier-content); cursor: pointer; }
+.pyramid-tier.t-strategic { width: 98%; background: var(--tier-strategic); cursor: pointer; }
+.pyramid-count { font-size: 0.75rem; opacity: 0.8; margin-left: 8px; font-weight: 400; }
+
+/* Need Cards */
+.needs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto 40px; }
+.need-card { background: var(--bg-card); border: 2px solid var(--gray-dark); border-radius: 16px; padding: 24px 20px; cursor: pointer; transition: all 0.25s; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+.need-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: var(--need-color, var(--gray)); }
+.need-card .need-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+.need-card .need-name { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.need-card .need-divider { width: 40px; height: 2px; margin: 8px auto; border-radius: 1px; }
+.need-card .need-question { font-size: 0.85rem; color: var(--gray-light); line-height: 1.4; }
+.komplett-check-link { color: var(--gray-light); font-size: 0.9rem; cursor: pointer; margin-top: 24px; display: inline-block; border-bottom: 1px dashed var(--gray); transition: color 0.2s; }
+.komplett-check-link:hover { color: var(--white); }
+
+/* Need Assessment Context */
+.need-header-banner { padding: 16px 24px; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
+.need-header-banner .need-header-icon { font-size: 1.8rem; }
+.need-header-banner h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); }
+.need-header-banner p { font-size: 0.85rem; margin-top: 4px; }
+.need-context-badge { font-size: 0.75rem; padding: 6px 12px; border-radius: 6px; margin-bottom: 8px; line-height: 1.4; }
+.need-context-badge.primary { border-left: 3px solid; }
+.need-context-badge.secondary { border-left: 3px dashed var(--gray); background: color-mix(in srgb, var(--gray) 5%, transparent); color: var(--gray-light); }
+.slider-item.need-dimmed { opacity: 0.55; }
+.slider-item.need-dimmed:hover { opacity: 0.8; }
+
+/* Need Results */
+.need-score-section { text-align: center; margin-bottom: 32px; }
+.need-score-circle { width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--gray-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; position: relative; }
+.need-score-num { font-size: 2.5rem; font-weight: 900; }
+.need-score-label { font-size: 0.85rem; color: var(--gray-light); }
+.impact-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.impact-card.weakness { border-left: 4px solid var(--score-low); }
+.impact-card.strength { border-left: 4px solid var(--score-high); }
+.impact-card.blockade { border-left: 4px solid var(--score-mid); }
+.impact-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.impact-card p { font-size: 0.82rem; color: var(--gray-light); line-height: 1.5; }
+.impact-section { margin-bottom: 28px; }
+.impact-section h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-dark); }
+
+/* 90-Day Plan */
+.plan-month { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.plan-month-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.plan-month-num { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; color: white; }
+.plan-month-title { font-size: 1rem; font-weight: 700; color: var(--white); }
+.plan-month-desc { font-size: 0.85rem; color: var(--gray-light); }
+.plan-action { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray-dark); }
+.plan-action:last-child { border-bottom: none; }
+.plan-action-score { min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: white; }
+.plan-action-info { flex: 1; }
+.plan-action-name { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+.plan-action-tip { font-size: 0.78rem; color: var(--gray-light); margin-top: 2px; }
+.plan-action-agent { font-size: 0.72rem; color: var(--tier-optimization); margin-top: 4px; }
+
+/* Landing variant for complete check */
+.landing-pyramid-section { display: none; }
+.landing-pyramid-section.visible { display: block; }
+.landing-needs-section { display: block; }
+.landing-needs-section.hidden { display: none; }
+
+/* Buttons */
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: white; border: none; padding: 16px 48px; font-size: 1.1rem; font-weight: 700; border-radius: 12px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+.btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,26,26,0.3); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-card); color: var(--white); border: 1px solid var(--gray-dark); padding: 12px 28px; font-size: 0.95rem; font-weight: 600; border-radius: 10px; cursor: pointer; font-family: inherit; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--gray); }
+
+/* Assessment */
+.assessment-header { text-align: center; margin-bottom: 32px; }
+.assessment-header h2 { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.assessment-layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.tier-tabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+.tier-tab { padding: 10px 20px; border: 2px solid var(--gray-dark); background: transparent; color: var(--gray-light); font-family: inherit; font-weight: 600; font-size: 0.85rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.tier-tab:hover { border-color: var(--gray); }
+.tier-tab.active { color: white; border-color: var(--active-tier-color, var(--primary)); background: color-mix(in srgb, var(--active-tier-color, var(--primary)) 15%, transparent); }
+.slider-group { display: none; }
+.slider-group.active { display: block; }
+.slider-item { background: var(--bg-card); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; border: 1px solid var(--gray-dark); transition: border-color 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.slider-item:hover { border-color: var(--gray); }
+.slider-label { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.slider-name { font-weight: 700; font-size: 0.95rem; color: var(--white); }
+.slider-score { font-weight: 800; font-size: 1.1rem; min-width: 28px; text-align: right; }
+.slider-desc { font-size: 0.8rem; color: var(--gray-light); margin-bottom: 12px; }
+.slider-track { position: relative; width: 100%; height: 8px; background: var(--gray-dark); border-radius: 4px; margin-bottom: 8px; }
+.slider-track input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; outline: none; cursor: pointer; background: transparent; position: relative; z-index: 2; }
+.slider-track input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 3px solid var(--slider-color, var(--primary)); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.15s; }
+.slider-track input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.slider-track input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 3px solid var(--slider-color, var(--primary)); cursor: pointer; }
+.slider-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; z-index: 1; transition: width 0.15s; }
+.slider-levels { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--gray); }
+
+/* Thesen Checkboxes */
+.thesen-list { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--gray-dark); }
+.thesen-header { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 8px; font-weight: 600; }
+.these-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; cursor: pointer; transition: opacity 0.15s; }
+.these-item:hover { opacity: 0.85; }
+.these-cb { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--gray); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.these-cb.checked { border-color: var(--score-high); background: var(--score-high); }
+.these-cb.checked::after { content: ''; display: block; width: 5px; height: 9px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); margin-top: -2px; }
+.these-text { flex: 1; font-size: 0.8rem; color: var(--gray-light); line-height: 1.4; user-select: none; }
+.these-item.checked .these-text { color: var(--white-muted); }
+.these-item:focus { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+.these-item:focus:not(:focus-visible) { outline: none; }
+.these-level-tag { font-size: 0.6rem; padding: 1px 6px; border-radius: 3px; font-weight: 600; color: white; flex-shrink: 0; margin-top: 2px; }
+
+/* Empfehlung */
+.empfehlung-box { margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; line-height: 1.5; border-left: 3px solid var(--primary); }
+.empfehlung-box.action { background: color-mix(in srgb, var(--score-mid) 8%, transparent); border-left-color: var(--score-mid); }
+.empfehlung-box.good { background: color-mix(in srgb, var(--score-high) 8%, transparent); border-left-color: var(--score-high); }
+.empfehlung-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 4px; }
+.empfehlung-label.action { color: var(--score-mid); }
+.empfehlung-label.good { color: var(--score-high); }
+.ki-agent-hint { margin-top: 8px; padding: 10px 14px; background: color-mix(in srgb, var(--tier-optimization) 8%, transparent); border-radius: 8px; font-size: 0.78rem; color: var(--gray-light); border-left: 3px solid var(--tier-optimization); }
+.ki-agent-hint strong { color: var(--tier-optimization); }
+
+/* Radar Sidebar */
+.radar-sidebar { position: sticky; top: 80px; }
+.radar-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.radar-card h3 { font-size: 0.9rem; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; text-align: center; }
+.radar-canvas-wrap { width: 280px; height: 280px; margin: 0 auto; }
+.tier-averages { margin-top: 16px; }
+.tier-avg-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+.tier-avg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.tier-avg-label { font-size: 0.8rem; color: var(--gray-light); flex: 1; }
+.tier-avg-val { font-weight: 700; font-size: 0.9rem; }
+.assessment-nav { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
+.progress-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.progress-track { flex: 1; height: 4px; background: var(--gray-dark); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary); border-radius: 2px; transition: width 0.3s; }
+.progress-label { font-size: 0.75rem; color: var(--gray); font-weight: 600; min-width: 80px; text-align: right; }
+
+/* Results */
+.results-header { text-align: center; margin-bottom: 40px; }
+.results-header h2 { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.overall-score { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
+.score-circle { width: 160px; height: 160px; border-radius: 50%; border: 6px solid var(--gray-dark); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; margin-bottom: 16px; }
+.score-circle-ring { position: absolute; top: -6px; left: -6px; width: 160px; height: 160px; }
+.score-circle-ring circle { fill: none; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 0.8s; }
+.score-number { font-size: 3rem; font-weight: 900; color: var(--white); }
+.score-percent { font-size: 1rem; color: var(--gray-light); }
+.score-label { font-size: 1rem; color: var(--gray-light); }
+.tier-bars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+.tier-bar-item { text-align: center; }
+.tier-bar-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.tier-bar-track { height: 120px; width: 40px; margin: 0 auto; background: var(--bg-card-hover); border-radius: 20px; position: relative; overflow: hidden; border: 1px solid var(--gray-dark); }
+.tier-bar-fill { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 20px; transition: height 0.6s; }
+.tier-bar-val { font-size: 1.1rem; font-weight: 800; margin-top: 8px; }
+.results-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--gray-dark); overflow-x: auto; }
+.results-tab { padding: 12px 20px; background: transparent; border: none; color: var(--gray-light); font-family: inherit; font-weight: 600; font-size: 0.85rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+.results-tab:hover { color: var(--white); }
+.results-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.results-panel { display: none; animation: fadeIn 0.3s; }
+.results-panel.active { display: block; }
+.radar-results-wrap { max-width: 500px; margin: 0 auto; }
+
+/* Heat Map */
+.heatmap-table { width: 100%; border-collapse: separate; border-spacing: 0 4px; }
+.heatmap-table th { text-align: left; padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); font-weight: 600; }
+.heatmap-table td { padding: 12px 16px; background: var(--bg-card-hover); font-size: 0.85rem; color: var(--white-muted); }
+.heatmap-table tr td:first-child { border-radius: 8px 0 0 8px; }
+.heatmap-table tr td:last-child { border-radius: 0 8px 8px 0; }
+.heatmap-score { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; color: white; }
+.heatmap-score.low { background: var(--score-low); }
+.heatmap-score.mid { background: var(--score-mid); }
+.heatmap-score.high { background: var(--score-high); }
+.heatmap-tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; color: white; }
+.heatmap-priority-bar { width: 80px; height: 6px; background: var(--gray-dark); border-radius: 3px; overflow: hidden; }
+.heatmap-priority-fill { height: 100%; border-radius: 3px; background: var(--primary); }
+.heatmap-table tbody tr { cursor: pointer; transition: background 0.15s; }
+.heatmap-table tbody tr:hover td { background: #EEF0F4; }
+
+/* Dependency */
+.dep-flow { background: var(--bg-card-hover); border-radius: 12px; padding: 32px; border: 1px solid var(--gray-dark); overflow-x: auto; }
+.dep-flow svg { width: 100%; min-width: 1100px; height: 700px; }
+.dep-node { cursor: pointer; transition: opacity 0.2s; }
+.dep-node text { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; fill: white; }
+.dep-line { stroke: var(--gray); stroke-width: 1.5; fill: none; transition: stroke 0.2s, stroke-width 0.2s; opacity: 0.4; }
+.dep-line.highlight { stroke: var(--primary); stroke-width: 3; opacity: 1; }
+.dep-name-label { font-family: 'Montserrat', sans-serif; font-size: 9.5px; fill: var(--gray-light); font-weight: 500; }
+.dep-legend-text { font-family: 'Montserrat', sans-serif; font-size: 11px; fill: var(--gray-light); font-weight: 500; }
+.dep-legend-hint { font-family: 'Montserrat', sans-serif; font-size: 10px; fill: var(--gray); font-weight: 400; font-style: italic; }
+
+/* Priorities */
+.priority-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.priority-head { display: grid; grid-template-columns: 40px 1fr auto; gap: 16px; align-items: center; }
+.priority-rank { font-size: 1.5rem; font-weight: 900; color: var(--primary); }
+.priority-info h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.priority-info p { font-size: 0.8rem; color: var(--gray-light); }
+.priority-impact { text-align: center; }
+.priority-impact .val { font-size: 1.5rem; font-weight: 900; color: var(--primary-light); }
+.priority-impact .lbl { font-size: 0.65rem; color: var(--gray); text-transform: uppercase; }
+.priority-tip { margin-top: 12px; padding: 12px 16px; background: color-mix(in srgb, var(--primary) 6%, transparent); border-radius: 8px; font-size: 0.8rem; color: var(--gray-light); border-left: 3px solid var(--primary); }
+.priority-agent { margin-top: 8px; padding: 10px 14px; background: color-mix(in srgb, var(--tier-optimization) 6%, transparent); border-radius: 8px; font-size: 0.78rem; color: var(--gray-light); border-left: 3px solid var(--tier-optimization); }
+.priority-agent strong { color: var(--tier-optimization); }
+
+/* KI-Agenten Tab */
+.agent-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 24px; margin-bottom: 16px; display: grid; grid-template-columns: 48px 1fr; gap: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.agent-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 900; color: white; }
+.agent-card h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.agent-card .agent-desc { font-size: 0.85rem; color: var(--gray-light); margin-bottom: 10px; line-height: 1.5; }
+.agent-card .agent-prompt { background: var(--bg-card-hover); border: 1px solid var(--gray-dark); border-radius: 6px; padding: 10px 14px; font-size: 0.75rem; font-family: 'SF Mono', 'Fira Code', monospace; color: var(--gray-light); }
+.agent-card .agent-prompt::before { content: 'Beispiel-Prompt: '; color: var(--tier-optimization); font-weight: 600; font-family: 'Montserrat', sans-serif; }
+
+/* Export */
+.export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px; }
+.export-card { background: var(--bg-card); border: 1px solid var(--gray-dark); border-radius: 12px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.export-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.export-card p { font-size: 0.85rem; color: var(--gray-light); margin-bottom: 16px; }
+.prompt-preview { background: var(--bg-card-hover); border: 1px solid var(--gray-dark); border-radius: 8px; padding: 16px; font-size: 0.75rem; color: var(--gray-light); font-family: 'SF Mono', 'Fira Code', monospace; max-height: 200px; overflow-y: auto; margin-bottom: 16px; white-space: pre-wrap; line-height: 1.5; }
+.share-url { background: var(--bg-card-hover); border: 1px solid var(--gray-dark); border-radius: 8px; padding: 12px 16px; font-size: 0.8rem; color: var(--gray-light); font-family: monospace; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 16px; }
+.copy-feedback { color: var(--score-high); font-size: 0.8rem; font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-left: 8px; }
+.copy-feedback.show { opacity: 1; }
+.akademie-cta { background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--bg-card-hover)), var(--bg-card)); border: 1px solid color-mix(in srgb, var(--primary) 20%, var(--gray-dark)); border-radius: 16px; padding: 32px; text-align: center; margin-top: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.akademie-cta h3 { font-size: 1.3rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.akademie-cta p { color: var(--gray-light); margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+/* Tooltip */
+.tooltip { position: fixed; background: #FFFFFF; border: 1px solid var(--gray-dark); border-radius: 8px; padding: 12px 16px; font-size: 0.8rem; color: var(--white-muted); max-width: 280px; z-index: 200; pointer-events: none; opacity: 0; transition: opacity 0.15s; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.tooltip.visible { opacity: 1; }
+
+/* Print */
+@media print {
+  body { background: white; color: #222; }
+  .nav, .tier-tabs, .assessment-nav, .results-tabs, .btn-primary, .btn-secondary, .export-grid, .akademie-cta { display: none !important; }
+  .screen { display: block !important; page-break-inside: avoid; padding-top: 20px; min-height: auto; }
+  .screen#screen-landing, .screen#screen-assessment, .screen#screen-export { display: none !important; }
+  .results-panel { display: block !important; page-break-inside: avoid; margin-bottom: 20px; }
+  .container { max-width: 100%; }
+  .tier-bar-track { background: #eee; } .dep-flow { border: 1px solid #ddd; }
+  .heatmap-table td { background: #f8f8f8; } .priority-card, .agent-card { background: #f8f8f8; border-color: #ddd; }
+  .score-circle { border-color: #ddd; } h2, h3, h4 { color: #111 !important; }
+  .print-title { display: block !important; text-align: center; font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: #111; }
+}
+.print-title { display: none; }
+
+/* Reset Button */
+.btn-reset { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--gray-light); border: 1px solid var(--gray-dark); padding: 10px 20px; font-size: 0.8rem; font-weight: 600; border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.btn-reset:hover { color: var(--score-low); border-color: var(--score-low); background: color-mix(in srgb, var(--score-low) 8%, transparent); }
+
+/* Tier Tab Badges */
+.tier-tab-badge { font-size: 0.65rem; margin-left: 6px; padding: 1px 6px; border-radius: 10px; background: var(--gray-dark); color: var(--gray-light); font-weight: 600; }
+.tier-tab-badge.complete { background: var(--score-high); color: white; }
+
+/* Celebration Banner */
+.celebration-banner { position: fixed; top: 60px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--score-high), #059669); color: white; padding: 14px 32px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; z-index: 150; box-shadow: 0 8px 32px rgba(34,197,94,0.3); animation: celebrationSlide 0.5s ease; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.celebration-banner.show { opacity: 1; pointer-events: auto; }
+@keyframes celebrationSlide { from { transform: translateX(-50%) translateY(-20px); } to { transform: translateX(-50%) translateY(0); } }
+
+/* Copy Prompt Button */
+.agent-prompt-wrap { position: relative; }
+.btn-copy-prompt { position: absolute; top: 8px; right: 8px; background: var(--bg-card-hover); border: 1px solid var(--gray-dark); color: var(--gray-light); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.btn-copy-prompt:hover { background: var(--gray-dark); color: var(--white); }
+
+/* Dep intro */
+.dep-intro { color: var(--gray-light); font-size: 0.85rem; margin-bottom: 16px; line-height: 1.6; }
+.dep-intro strong { color: var(--white-muted); }
+
+/* Mobile scroll hint */
+.dep-scroll-hint { display: none; text-align: center; font-size: 0.75rem; color: var(--gray); margin-bottom: 12px; padding: 8px; background: color-mix(in srgb, var(--gray-dark) 50%, transparent); border-radius: 6px; }
+@media (max-width: 1200px) { .dep-scroll-hint { display: block; } }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .assessment-layout { grid-template-columns: 1fr; }
+  .radar-sidebar { position: static; order: -1; }
+  .radar-canvas-wrap { width: 220px; height: 220px; }
+}
+@media (max-width: 600px) {
+  .landing-stats { gap: 20px; }
+  .pyramid-tier { font-size: 0.75rem; padding: 10px 14px; }
+  .tier-bars { grid-template-columns: repeat(3, 1fr); }
+  .export-grid { grid-template-columns: 1fr; }
+  .agent-card { grid-template-columns: 1fr; }
+  .needs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .need-card { padding: 16px 12px; }
+  .need-card .need-icon { font-size: 1.5rem; }
+  .need-card .need-name { font-size: 0.85rem; }
+  .need-card .need-question { font-size: 0.75rem; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 11px; }
+}
+@media (max-width: 380px) {
+  .needs-grid { grid-template-columns: 1fr; max-width: 280px; }
+}
+
+:root {
+  --primary: #FF1A1A;
+  --primary-light: #E01515;
+  --primary-dark: #CC1515;
+  --tier-foundation: #3B82F6;
+  --tier-claude-code: #22C55E;
+  --tier-skills: #F97316;
+  --tier-hooks: #EF4444;
+  --tier-architecture: #A855F7;
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo">AI PERFORMANCE ACADEMY</div>
+  <div class="nav-links">
+    <a href="#" onclick="showScreen('landing')">Start</a>
+    <a href="#" onclick="showScreen('assessment')">Assessment</a>
+    <a href="#" onclick="showScreen('results')">Ergebnisse</a>
+    <a href="#" onclick="showScreen('export')">Export</a>
+  </div>
+</nav>
+<div class="tooltip" id="tooltip"></div>
+<div class="celebration-banner" id="celebrationBanner">&#127881; Alle 25 Bausteine bewertet! Schau dir jetzt deine Ergebnisse an.</div>
+
+<!-- SCREEN 1: LANDING -->
+<div class="screen active" id="screen-landing">
+<div class="container">
+  <div class="landing-hero">
+    <div class="landing-needs-section" id="landingNeedsSection">
+      <h1>Was ist dein groesster <span class="accent">Claude Code Engpass</span>?</h1>
+      <p class="subtitle">Waehle dein Ziel — wir zeigen dir, was dich zurueckhaelt.</p>
+      <div class="needs-grid" id="needsGrid"></div>
+      <div class="landing-stats">
+        <div class="landing-stat"><div class="number">25</div><div class="label">Bausteine</div></div>
+        <div class="landing-stat"><div class="number">125</div><div class="label">Checks</div></div>
+        <div class="landing-stat"><div class="number">5</div><div class="label">Minuten</div></div>
+      </div>
+      <div style="margin-top:8px;">
+        <span class="komplett-check-link" onclick="startKomplettCheck()">Oder: Alle 25 Bausteine bewerten &#8594;</span>
+      </div>
+    </div>
+    <div class="landing-pyramid-section" id="landingPyramidSection">
+      <h1>Wie gut beherrschst du <span class="accent">Claude Code</span>?</h1>
+      <p class="subtitle">Bewerte 25 Claude Code Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, wie du zum Power User wirst.</p>
+      <div class="landing-stats">
+        <div class="landing-stat"><div class="number">25</div><div class="label">Bausteine</div></div>
+        <div class="landing-stat"><div class="number">125</div><div class="label">Hypothesen</div></div>
+        <div class="landing-stat"><div class="number">5</div><div class="label">Minuten</div></div>
+      </div>
+      <div class="pyramid" id="pyramidContainer"></div>
+      <button class="btn-primary" onclick="showScreen('assessment')">Komplett-Check starten &#8594;</button>
+      <div style="margin-top:16px;">
+        <span class="komplett-check-link" onclick="showNeedsLanding()">&#8592; Zurueck zur Beduerfnis-Auswahl</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SCREEN 2: ASSESSMENT -->
+<div class="screen" id="screen-assessment">
+<div class="container">
+  <div class="need-header-banner" id="needHeaderBanner" style="display:none"></div>
+  <div class="assessment-header">
+    <h2>Bewerte deine Claude Code Skills</h2>
+    <p style="color:var(--gray-light);font-size:0.85rem;margin-bottom:16px">Hake die Aussagen an, die auf dich zutreffen. Der Score berechnet sich automatisch.</p>
+    <div class="progress-bar"><div class="progress-track"><div class="progress-fill" id="assessmentProgress"></div></div><div class="progress-label" id="assessmentProgressLabel">0 / 25</div></div>
+  </div>
+  <div class="assessment-layout">
+    <div class="assessment-sliders">
+      <div class="tier-tabs" id="tierTabs"></div>
+      <div id="sliderGroups"></div>
+      <div class="assessment-nav">
+        <button class="btn-secondary" onclick="showScreen('landing')">&#8592; Zurueck</button>
+        <button class="btn-reset" onclick="resetAssessment()">&#8634; Zuruecksetzen</button>
+        <button class="btn-primary" onclick="showResults()">Ergebnisse anzeigen &#8594;</button>
+      </div>
+    </div>
+    <div class="radar-sidebar">
+      <div class="radar-card">
+        <h3>Live-Uebersicht</h3>
+        <div class="radar-canvas-wrap"><canvas id="miniRadar"></canvas></div>
+        <div class="tier-averages" id="tierAverages"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SCREEN 3: RESULTS -->
+<div class="screen" id="screen-results">
+<div class="container">
+  <h2 class="print-title">Claude Code for Business Assessment – AI Performance Academy - Ergebnisse</h2>
+  <div class="results-header"><h2>Deine Ergebnisse</h2></div>
+  <div class="overall-score">
+    <div class="score-circle">
+      <svg class="score-circle-ring" viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="74" stroke="var(--gray-dark)" stroke-width="6" fill="none"/>
+        <circle cx="80" cy="80" r="74" id="scoreRing" stroke="var(--primary)" stroke-width="6" fill="none" stroke-dasharray="465" stroke-dashoffset="465" transform="rotate(-90 80 80)"/>
+      </svg>
+      <div class="score-number" id="overallScoreNum">0</div>
+      <div class="score-percent">%</div>
+    </div>
+    <div class="score-label" id="overallScoreLabel">Gesamt-Score</div>
+  </div>
+  <div class="tier-bars" id="tierBars"></div>
+  <div class="results-tabs" id="resultsTabs">
+    <button class="results-tab active" onclick="showResultTab('radar')">Radar</button>
+    <button class="results-tab" onclick="showResultTab('heatmap')">Heat Map</button>
+    <button class="results-tab" onclick="showResultTab('dependencies')">Abhaengigkeiten</button>
+    <button class="results-tab" onclick="showResultTab('priorities')">Top-5 Prioritaeten</button>
+    <button class="results-tab" onclick="showResultTab('agents')">KI-Agenten</button>
+  </div>
+  <div class="results-panel active" id="panel-radar"><div class="radar-results-wrap"><canvas id="resultsRadar"></canvas></div></div>
+  <div class="results-panel" id="panel-heatmap"><table class="heatmap-table"><thead><tr><th>Baustein</th><th>Tier</th><th>Score</th><th>Level</th><th>Prioritaet</th></tr></thead><tbody id="heatmapBody"></tbody></table></div>
+  <div class="results-panel" id="panel-dependencies">
+    <div class="dep-intro"><strong>So haengen deine Claude Code Bausteine zusammen.</strong> Jeder Kreis ist ein Baustein - die Farbe zeigt den Score (rot = kritisch, gelb = ausbaufaehig, gruen = gut). Groessere Kreise haben mehr abhaengige Bausteine. <strong>Hover ueber einen Kreis</strong> um seine Verbindungen zu sehen.</div>
+    <div class="dep-scroll-hint">&#8592; Horizontal scrollen fuer die volle Ansicht &#8594;</div>
+    <div class="dep-flow" id="depFlow"></div>
+  </div>
+  <div class="results-panel" id="panel-priorities"><div id="prioritiesList"></div></div>
+  <div class="results-panel" id="panel-agents"><div id="agentsList"></div></div>
+  <div class="results-panel" id="panel-needgoal" style="display:none"><div id="needGoalContent"></div></div>
+  <div class="results-panel" id="panel-plan" style="display:none"><div id="planContent"></div></div>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+    <button class="btn-secondary" onclick="showScreen('assessment')">&#8592; Assessment bearbeiten</button>
+    <button class="btn-primary" onclick="showScreen('export')">Export & Teilen &#8594;</button>
+  </div>
+</div>
+</div>
+
+<!-- SCREEN 4: EXPORT -->
+<div class="screen" id="screen-export">
+<div class="container">
+  <div class="results-header"><h2>Export & Teilen</h2></div>
+  <div class="export-grid">
+    <div class="export-card">
+      <h3>KI-Prompt exportieren</h3>
+      <p>Kopiere diesen Prompt in ChatGPT oder Claude fuer eine personalisierte Analyse mit 90-Tage-Aktionsplan und KI-Agent-Empfehlungen.</p>
+      <div class="prompt-preview" id="promptPreview"></div>
+      <button class="btn-secondary" onclick="copyPrompt()">In Zwischenablage kopieren<span class="copy-feedback" id="copyFeedback">Kopiert!</span></button>
+    </div>
+    <div class="export-card">
+      <h3>PDF herunterladen</h3>
+      <p>Drucke deine Ergebnisse als PDF mit Radar-Chart, Heat Map, Prioritaeten und KI-Agent-Empfehlungen.</p>
+      <button class="btn-secondary" onclick="window.print()">PDF drucken (Cmd+P)</button>
+    </div>
+    <div class="export-card">
+      <h3>Link teilen</h3>
+      <p>Teile deine Ergebnisse per Link. Der Empfaenger sieht sofort deine Bewertungen.</p>
+      <div class="share-url" id="shareUrl"></div>
+      <button class="btn-secondary" onclick="copyShareUrl()">Link kopieren<span class="copy-feedback" id="shareFeedback">Kopiert!</span></button>
+    </div>
+  </div>
+  <div class="akademie-cta" id="akademieCta">
+    <h3 id="ctaTitle">Bereit fuer den naechsten Schritt?</h3>
+    <p id="ctaText">Die AI Performance Academy zeigt dir, wie du Claude Code und KI-Agenten professionell einsetzt.</p>
+    <a href="https://ai-performance.academy" target="_blank" class="btn-primary" style="text-decoration:none;">Mehr erfahren &#8594;</a>
+  </div>
+  <div style="text-align:center;margin-top:24px;"><button class="btn-secondary" onclick="showScreen('results')">&#8592; Zurueck zu Ergebnissen</button></div>
+</div>
+</div>
+
+<script>
+const CONFIG = {"meta":{"id":"claude-code-for-business","version":"2.1.0","title":"Claude Code for Business Assessment – AI Performance Academy","subtitle":"Waehle dein Ziel — wir zeigen dir, wo du stehst.","description":"Bewerte 25 Claude Code Bausteine in 5 Kategorien. Erkenne deine Staerken, Luecken und erfahre, wie du zum Power User wirst.","lang":"de","ogImage":"https://holgergelhausen.github.io/ai-performance-academy-assets/og-assessment.png","faviconLetter":"C","logoBarLabel":"Claude Code for Business","logoUrl":"https://holgergelhausen.github.io/ai-performance-academy-assets/logo-400-transparent.png","academyUrl":"https://ai-performance.academy","academyName":"AI Performance Academy","changelog":[{"version":"1.2.0","date":"2026-02-09","changes":["Design angepasst an ai-pa.ai: Primary Color #FF1A1A","AI Performance Academy Branding konsistent"]},{"version":"1.1.0","date":"2026-02-09","changes":["Umbenannt: Claude Code Mastery → Claude Code for Business","Business-Fokus im Branding"]},{"version":"1.0.0","date":"2026-02-09","changes":["Initial Release: 25 Bausteine, 6 Needs, 5 Tiers","Fokus auf Claude Code Skills, Agents, Hooks und MCP","Generiert mit Assessment Engine v5.0.0"]}]},"theme":{"primaryColor":"#FF1A1A","primaryColorLight":"#FF4444","primaryColorDark":"#CC1515"},"labels":{"landingHeadline":"Was ist dein groesster","landingAccent":"Claude Code Engpass","landingSubtitle":"Waehle dein Ziel — wir zeigen dir, was dich zurueckhaelt.","komplettCheckHeadline":"Wie gut beherrschst du","komplettCheckAccent":"Claude Code","komplettCheckSubtitle":"Bewerte 25 Claude Code Bausteine in 5 Kategorien. Erkenne Staerken, Schwaechen und erfahre, wie du zum Power User wirst.","componentLabel":"Bausteine","checksLabel":"Checks","hypothesesLabel":"Hypothesen","assessmentDuration":"5 Minuten","assessmentTitle":"Bewerte deine Claude Code Skills","assessmentSubtitle":"Hake die Aussagen an, die auf dich zutreffen. Der Score berechnet sich automatisch.","thesesHeader":"Trifft das auf dich zu?","resultsTitle":"Deine Ergebnisse","exportTitle":"Export & Teilen","scoreLabels":{"excellent":"Exzellent - Du bist ein Claude Code Power User","good":"Gut - Solide Basis mit Ausbau-Potenzial","expandable":"Ausbaufaehig - Wichtige Features ungenutzt","critical":"Einsteiger - Grundlagen muessen aufgebaut werden"},"needScoreLabels":{"good":"Du bist hier gut aufgestellt","medium":"Solide Basis — aber Luecken vorhanden","critical":"Kritische Luecken blockieren dein Ziel"},"depIntroText":"So haengen deine Claude Code Bausteine zusammen.","ctaDefaultText":"Die AI Performance Academy zeigt dir, wie du Claude Code und KI-Agenten professionell einsetzt."},"scoring":{"checkToScoreMap":[1,2,3,4,4,5],"needPrimaryMultiplier":2,"needSecondaryMultiplier":1.3,"needIrrelevantMultiplier":0.3,"dependencyWeight":0.15},"tiers":[{"id":"foundation","name":"KI-Grundlagen","color":"#3B82F6","weight":0.2},{"id":"claude-code","name":"Claude Code Core","color":"#22C55E","weight":0.25},{"id":"skills","name":"Skills & Commands","color":"#F97316","weight":0.25},{"id":"hooks","name":"Hooks & Automation","color":"#EF4444","weight":0.15},{"id":"architecture","name":"Architektur & Mastery","color":"#A855F7","weight":0.15}],"levels":["Nicht vorhanden","Erste Versuche","Regelmaessig genutzt","Systematisch eingesetzt","Meisterhaft beherrscht"],"components":[{"id":1,"name":"Prompt Engineering","tier":"foundation","desc":"Strukturierte, effektive Prompts fuer Claude formulieren?","related":[2,3,6,11],"levels":["Copy-Paste aus dem Internet","Einfache Fragen stellen","Strukturierte Prompts mit Kontext","System Prompts + Few-Shot + Chain-of-Thought","Meta-Prompting und Prompt-Bibliotheken"],"theses":["Ich gebe Claude immer Kontext und Rolle, bevor ich eine Aufgabe stelle.","Ich nutze strukturierte Formate wie Markdown, Listen oder XML-Tags in meinen Prompts.","Ich verwende Few-Shot-Beispiele, wenn ich ein bestimmtes Output-Format brauche.","Ich kenne den Unterschied zwischen System Prompt, User Prompt und Assistant Prefill.","Ich habe eine persoenliche Prompt-Bibliothek und optimiere Prompts iterativ."],"recommendations":["Starte jeden Prompt mit Rolle + Kontext + Aufgabe. Beispiel: Du bist ein X. Ich arbeite an Y. Hilf mir bei Z.","Nutze Markdown-Struktur in Prompts: Ueberschriften, Listen und Code-Bloecke machen Prompts praeziser.","Baue dir 3-5 Few-Shot-Templates fuer deine haeufigsten Aufgaben.","Experimentiere mit Chain-of-Thought: Lass Claude erst denken, dann antworten.","Stark! Baue deine Prompt-Bibliothek in CLAUDE.md oder als Skills ein."],"aiAgent":"Ein Prompt-Optimierer kann deine bestehenden Prompts analysieren, Schwaechen identifizieren und verbesserte Versionen vorschlagen.","aiPrompt":"Analysiere diesen Prompt und verbessere ihn nach den Prinzipien: Klarheit, Struktur, Kontext und gewuenschtes Output-Format."},{"id":2,"name":"Context Engineering","tier":"foundation","desc":"Den richtigen Kontext fuer KI-Interaktionen bereitstellen?","related":[1,7,8,14],"levels":["Kein Bewusstsein fuer Kontext","Gelegentlich Hintergrund geben","CLAUDE.md und Projektstruktur verstanden","Systematisches Context Loading","Automatisiertes Context Management mit Hooks"],"theses":["Ich verstehe, dass die Qualitaet der KI-Antwort direkt vom bereitgestellten Kontext abhaengt.","Ich nutze CLAUDE.md-Dateien, um Claude dauerhaft Projektkontext zu geben.","Ich strukturiere meine Projekte so, dass Claude relevante Dateien leicht findet.","Ich nutze Context-Loading-Strategien wie Hooks oder Memory-Dateien.","Ich habe ein System, das automatisch den richtigen Kontext je nach Aufgabe laedt."],"recommendations":["Erkenne: Gleiche Frage + besserer Kontext = dramatisch bessere Antwort.","Erstelle eine CLAUDE.md in deinem Projekt mit Architektur, Konventionen und wichtigen Pfaden.","Organisiere dein Projekt mit klaren Ordnerstrukturen und sprechenden Dateinamen.","Nutze Memory-Dateien und Hooks fuer automatisches Context Loading.","Exzellent! Dein Context Engineering ist ein echter Multiplikator."],"aiAgent":"Ein Context-Analyzer kann dein Projekt scannen und automatisch die optimale CLAUDE.md generieren.","aiPrompt":"Analysiere die Struktur meines Projekts und erstelle eine CLAUDE.md mit den wichtigsten Konventionen, Pfaden und Architekturentscheidungen."},{"id":3,"name":"LLM-Verstaendnis","tier":"foundation","desc":"Wie Large Language Models funktionieren und ihre Grenzen?","related":[1,10,18],"levels":["Keine Ahnung wie LLMs funktionieren","Weiss dass es auf Wahrscheinlichkeiten basiert","Versteht Token, Context Window, Temperature","Kennt Modell-Unterschiede und waehlt gezielt","Versteht Architektur und kann Limitationen umgehen"],"theses":["Ich verstehe grundlegend, wie ein LLM Text generiert (Token-Vorhersage).","Ich kenne die Begriffe Context Window, Token-Limit und Temperature.","Ich weiss, wann Claude halluziniert und wie ich das erkenne und verhindere.","Ich kann verschiedene Modelle (Opus, Sonnet, Haiku) gezielt fuer verschiedene Aufgaben einsetzen.","Ich verstehe die Architektur gut genug, um Workarounds fuer Limitationen zu designen."],"recommendations":["Lies eine Einfuehrung in LLMs: Wie funktioniert Token-Vorhersage?","Experimentiere mit Temperature und beobachte die Unterschiede bei kreativen vs. analytischen Aufgaben.","Lerne die Halluzinationsmuster kennen: Fakten immer verifizieren, besonders bei Zahlen und URLs.","Teste bewusst Opus vs. Sonnet vs. Haiku fuer gleiche Aufgaben und vergleiche Qualitaet vs. Speed.","Top! Nutze dein Wissen, um Systeme zu bauen, die LLM-Schwaechen kompensieren."],"aiAgent":"Ein Model-Selector kann basierend auf Aufgabentyp, Komplexitaet und Budget automatisch das optimale Modell waehlen.","aiPrompt":"Erklaere mir den Unterschied zwischen Opus, Sonnet und Haiku - wann nehme ich welches Modell?"},{"id":4,"name":"Datenschutz & Sicherheit","tier":"foundation","desc":"Sichere und verantwortungsvolle Nutzung von KI-Tools?","related":[3,18,23],"levels":["Kein Bewusstsein","Weiss dass man aufpassen muss","Keine Secrets in Prompts","Permission-System verstanden und konfiguriert","Security-Policies und Hooks implementiert"],"theses":["Ich sende keine Passwoerter, API-Keys oder sensible Kundendaten an Claude.","Ich nutze .env-Dateien und .gitignore um Secrets zu schuetzen.","Ich verstehe das Permission-System von Claude Code (allow/deny pro Tool).","Ich habe Claude Code so konfiguriert, dass destruktive Aktionen bestaetigt werden muessen.","Ich nutze Pre-Hooks um sicherheitskritische Aktionen automatisch zu validieren."],"recommendations":["Grundregel: Niemals Passwoerter, API-Keys oder personenbezogene Daten in Prompts.","Richte .env + .gitignore ein und pruefe, dass keine Secrets committet werden.","Konfiguriere Claude Codes Permission-System: Welche Tools duerfen automatisch laufen?","Richte Bestaetigung fuer git push, rm -rf und andere destruktive Befehle ein.","Implementiere Pre-Hooks die Secrets in Prompts erkennen und blocken."],"aiAgent":"Ein Security-Auditor kann deine Konfiguration pruefen, offene Secrets finden und Verbesserungen vorschlagen.","aiPrompt":"Pruefe mein Projekt auf Sicherheitsluecken: Gibt es exponierte API-Keys, fehlende .gitignore-Eintraege oder unsichere Konfigurationen?"},{"id":5,"name":"CLI & Setup","tier":"claude-code","desc":"Claude Code installiert, konfiguriert und effizient genutzt?","related":[6,7,8,9],"levels":["Nicht installiert","Installiert aber selten genutzt","Taegliche Nutzung","Optimiert mit Custom Config","Integriert in gesamten Workflow"],"theses":["Ich habe Claude Code installiert und kann es im Terminal starten.","Ich kenne die wichtigsten Tastenkuerzel und Slash-Commands (/help, /clear, /compact).","Ich nutze Claude Code taeglich fuer Entwicklung, Content oder Recherche.","Ich habe mein Setup optimiert: Custom CLAUDE.md, Memory-Dateien, Hooks.","Claude Code ist mein primaeres Arbeitstool — ich nutze es fuer 80%+ meiner Aufgaben."],"recommendations":["Installiere Claude Code: npm install -g @anthropic-ai/claude-code und starte mit claude.","Lerne die 5 wichtigsten Commands: /help, /clear, /compact, /cost, /status.","Nutze Claude Code fuer eine reale Aufgabe pro Tag — Learning by Doing.","Erstelle deine erste CLAUDE.md mit Projekt-Konventionen.","Stark! Integriere Claude Code in dein tmux/Terminal-Setup fuer maximalen Flow."],"aiAgent":"Ein Setup-Assistent kann deine Claude Code Installation analysieren und Optimierungen vorschlagen.","aiPrompt":"Zeige mir die 10 wichtigsten Claude Code Tastenkuerzel und Slash-Commands mit Erklaerung."},{"id":6,"name":"Tool-Nutzung","tier":"claude-code","desc":"Die eingebauten Tools (Read, Write, Edit, Bash, Grep, Glob) effektiv nutzen?","related":[1,5,11,22],"levels":["Kenne die Tools nicht","Nutze nur Bash","Kenne Read/Write/Edit","Nutze gezielt das richtige Tool","Kombiniere Tools fuer komplexe Workflows"],"theses":["Ich weiss, dass Claude Code spezialisierte Tools hat (Read, Write, Edit, Bash, Grep, Glob).","Ich nutze Read statt cat, Edit statt sed und Grep statt grep im Terminal.","Ich verstehe, wann welches Tool optimal ist (z.B. Glob fuer Dateisuche, Grep fuer Inhalt).","Ich kann Claude anweisen, mehrere Tools parallel zu nutzen fuer schnellere Ergebnisse.","Ich nutze die Tools kreativ: z.B. WebFetch fuer Recherche, Task fuer Parallelisierung."],"recommendations":["Lerne die 6 Kern-Tools: Read, Write, Edit, Bash, Grep, Glob.","Sage Claude aktiv: Nutze Read statt cat — das verbessert die Ergebnisse.","Verstehe die Stärken: Glob = Dateien finden, Grep = Inhalte suchen, Read = Dateien lesen.","Experimentiere mit parallelen Tool-Aufrufen: Lies 3 Dateien gleichzeitig.","Exzellent! Kombiniere Tools in komplexen Workflows mit dem Task-Tool."],"aiAgent":"Ein Tool-Optimizer kann analysieren, welche Tools du am meisten nutzt und Verbesserungsvorschlaege machen.","aiPrompt":"Erklaere mir die Unterschiede zwischen Grep und Glob und wann ich welches Tool einsetze."},{"id":7,"name":"CLAUDE.md Konfiguration","tier":"claude-code","desc":"Projekt-Konfiguration ueber CLAUDE.md-Dateien steuern?","related":[2,5,8,11],"levels":["Keine CLAUDE.md","Einfache Anweisungen","Strukturierte Konventionen","Hierarchische CLAUDE.md (global + projekt)","Dynamische Konfiguration mit Kontext-Regeln"],"theses":["Ich habe mindestens eine CLAUDE.md-Datei in einem Projekt.","Meine CLAUDE.md enthaelt Projekt-Konventionen, Technologie-Stack und Namensregeln.","Ich nutze die Hierarchie: Globale CLAUDE.md + Projekt-CLAUDE.md + Verzeichnis-CLAUDE.md.","Meine CLAUDE.md wird regelmaessig aktualisiert wenn sich Konventionen aendern.","Ich habe ein System das CLAUDE.md-Inhalte automatisch aus Projektstruktur ableitet."],"recommendations":["Erstelle eine CLAUDE.md im Projekt-Root mit 5 Grundregeln fuer dein Projekt.","Dokumentiere: Tech-Stack, Namenskonventionen, wichtige Pfade, Testbefehle.","Nutze globale CLAUDE.md fuer User-Praeferenzen und projekt-spezifische fuer Code-Regeln.","Mache CLAUDE.md-Updates zum Teil deines Workflows: Neue Konvention = Update.","Top! Lass Claude selbst CLAUDE.md-Verbesserungen vorschlagen basierend auf Patterns."],"aiAgent":"Ein Config-Generator kann dein Projekt scannen und die optimale CLAUDE.md-Hierarchie erstellen.","aiPrompt":"Analysiere mein Projekt und erstelle eine strukturierte CLAUDE.md mit allen wichtigen Konventionen."},{"id":8,"name":"Memory System","tier":"claude-code","desc":"Persistentes Wissen ueber Sessions hinweg nutzen?","related":[2,7,9,14],"levels":["Weiss nicht was Memory ist","MEMORY.md gesehen","Nutze MEMORY.md fuer Notizen","Strukturierte Memory-Dateien pro Thema","Automatisches Memory-Update via Hooks"],"theses":["Ich weiss, dass Claude Code ein Memory-Verzeichnis hat das ueber Sessions persistiert.","Ich habe eine MEMORY.md mit wichtigen Projekt-Entscheidungen und Learnings.","Ich organisiere Memory in thematische Dateien (z.B. debugging.md, patterns.md).","Ich aktualisiere Memory aktiv wenn ich neue Patterns oder Fehler entdecke.","Memory wird automatisch durch Hooks oder am Session-Ende aktualisiert."],"recommendations":["Finde dein Memory-Verzeichnis: Es liegt unter .claude/projects/[project]/memory/.","Erstelle eine MEMORY.md mit den 5 wichtigsten Entscheidungen deines Projekts.","Trenne Memory in Dateien: patterns.md, debugging.md, architecture.md — verlinkt von MEMORY.md.","Mache es zur Gewohnheit: Neues Learning = Memory-Update.","Exzellent! Baue Hooks die am Session-Ende automatisch Learnings in Memory schreiben."],"aiAgent":"Ein Memory-Manager kann deine Sessions analysieren und automatisch relevante Learnings in Memory-Dateien extrahieren.","aiPrompt":"Analysiere unsere bisherige Konversation und schreibe die 3 wichtigsten Learnings in meine MEMORY.md."},{"id":9,"name":"Plan Mode","tier":"claude-code","desc":"Den Plan Mode fuer komplexe Aufgaben strategisch einsetzen?","related":[5,8,21,24],"levels":["Kenne Plan Mode nicht","Mal ausprobiert","Nutze ihn fuer groessere Tasks","Systematischer Einsatz mit Approval-Workflow","Plan Mode + Multi-Agent Orchestration"],"theses":["Ich weiss, dass Claude Code einen Plan Mode hat und wann ich ihn nutzen sollte.","Ich nutze Plan Mode bei Aufgaben die mehr als 3 Dateien betreffen.","Ich pruefe und genehmige Plaene bevor Claude mit der Implementierung beginnt.","Ich nutze Plan Mode fuer Architektur-Entscheidungen und groessere Refactorings.","Ich kombiniere Plan Mode mit Multi-Agent-Ausfuehrung fuer maximale Effizienz."],"recommendations":["Teste Plan Mode: Sage Claude bei einer komplexen Aufgabe Plan erstmal einen Plan.","Nutze Plan Mode wenn du unsicher bist ob der Ansatz stimmt — es spart Rueckbau-Zeit.","Pruefe jeden Plan kritisch: Fehlen Dateien? Ist die Reihenfolge sinnvoll?","Kombiniere: Plan Mode fuer die Architektur, dann Builder-Agents fuer die Umsetzung.","Top! Nutze Plan Mode + Task Tool mit parallelen Agents fuer maximale Geschwindigkeit."],"aiAgent":"Ein Plan-Reviewer kann generierte Plaene auf Vollstaendigkeit, Risiken und fehlende Schritte pruefen.","aiPrompt":"Erstelle einen detaillierten Implementierungsplan fuer dieses Feature mit Phasen, Dateien und Abhaengigkeiten."},{"id":10,"name":"Context Window Management","tier":"claude-code","desc":"Mit dem begrenzten Context Window effizient umgehen?","related":[2,3,21,22],"levels":["Was ist ein Context Window?","Merke wenn Claude vergisst","Nutze /compact gezielt","Delegiere an Subagents um Context zu schuetzen","Architektur-Patterns fuer Context-Effizienz"],"theses":["Ich verstehe, dass Claude ein begrenztes Context Window hat und was passiert wenn es voll ist.","Ich erkenne, wenn Claude anfaengt Kontext zu verlieren und reagiere darauf.","Ich nutze /compact oder /clear strategisch um Context freizugeben.","Ich delegiere umfangreiche Recherchen an Subagents um meinen Hauptkontext zu schuetzen.","Ich designe meine Workflows so, dass sie Context-effizient sind (kleine Dateien, klare Aufgaben)."],"recommendations":["Verstehe: Claude hat ca. 200k Token Context. Grosse Dateien fuellen das schnell.","Beobachte: Wenn Claude Dinge wiederholt oder vergisst, ist der Context fast voll.","Nutze /compact nach abgeschlossenen Aufgabenbloecken um Context freizugeben.","Delegiere: Nutze das Task-Tool fuer Recherchen — Subagents haben eigenen Context.","Exzellent! Designe Workflows mit klaren Phasen die jeweils wenig Context brauchen."],"aiAgent":"Ein Context-Monitor kann die aktuelle Context-Auslastung schaetzen und rechtzeitig warnen.","aiPrompt":"Wie viel Context haben wir ungefaehr verbraucht und was koennen wir tun um ihn zu optimieren?"},{"id":11,"name":"Skill-Erstellung","tier":"skills","desc":"Eigene Claude Code Skills in SKILL.md erstellen?","related":[1,7,12,13],"levels":["Weiss nicht was Skills sind","Skills gesehen aber nicht erstellt","Ersten eigenen Skill geschrieben","Mehrere produktive Skills im Einsatz","Skill-Bibliothek mit 20+ Skills"],"theses":["Ich weiss was ein Claude Code Skill ist und wo Skills gespeichert werden.","Ich habe mindestens einen eigenen Skill mit SKILL.md und YAML-Frontmatter erstellt.","Meine Skills haben klare Trigger-Woerter in der Description.","Ich nutze Skills taeglich fuer wiederkehrende Workflows.","Ich habe eine Skill-Bibliothek mit 10+ Skills und pflege sie regelmaessig."],"recommendations":["Verstehe: Skills liegen in .claude/skills/[skill-name]/SKILL.md mit YAML-Frontmatter.","Erstelle deinen ersten Skill: Nimm einen Workflow den du oft machst und schreibe ihn als SKILL.md.","Achte auf gute Trigger-Woerter in der Description — sie bestimmen wann der Skill aktiviert wird.","Baue dir Skills fuer deine Top-5 wiederkehrenden Aufgaben.","Stark! Organisiere deine Skills, teile sie im Team und versioniere sie."],"aiAgent":"Ein Skill-Generator kann aus einer Workflow-Beschreibung automatisch eine valide SKILL.md erstellen.","aiPrompt":"Erstelle einen Claude Code Skill fuer folgenden Workflow: [Workflow-Beschreibung]. Nutze YAML-Frontmatter und klare Trigger-Woerter."},{"id":12,"name":"Skill-Architektur","tier":"skills","desc":"Skills mit Progressive Disclosure und Referenzdateien strukturieren?","related":[11,13,15],"levels":["Alles in einer Datei","SKILL.md unter 500 Zeilen","SKILL.md + REFERENCE.md getrennt","Templates und Examples integriert","Modulare Skill-Architektur mit Shared Components"],"theses":["Ich halte meine SKILL.md unter 500 Zeilen.","Ich nutze REFERENCE.md fuer detaillierte Dokumentation und Beispiele.","Meine Skills haben eine klare Struktur: Wann nutzen, Workflow, Validierung.","Ich verwende Templates und Examples als eigene Dateien im Skill-Verzeichnis.","Meine Skills teilen gemeinsame Module (z.B. Validierung, Formatierung)."],"recommendations":["Grundregel: SKILL.md max 500 Zeilen. Alles darueber in REFERENCE.md auslagern.","Trenne: SKILL.md = Was und Wann, REFERENCE.md = Wie im Detail.","Nutze klare Sektionen: Overview, When to Use, Workflow, Validation, Examples.","Erstelle templates/ und examples/ Verzeichnisse fuer wiederverwendbare Inhalte.","Exzellent! Baue shared Modules die mehrere Skills nutzen koennen."],"aiAgent":"Ein Skill-Refactorer kann uebergrosse SKILL.md-Dateien analysieren und optimal aufteilen.","aiPrompt":"Diese SKILL.md ist zu lang. Teile sie in SKILL.md (max 500 Zeilen) + REFERENCE.md + templates/ auf."},{"id":13,"name":"Slash Commands","tier":"skills","desc":"Custom Slash Commands und Skill-Invocation beherrschen?","related":[5,11,14],"levels":["Kenne nur /help","Nutze eingebaute Commands","Kenne den Unterschied Skill vs Command","Eigene invokable Skills erstellt","Skill-Oekosystem mit Orchestrator"],"theses":["Ich kenne die eingebauten Slash Commands (/help, /clear, /compact, /cost).","Ich weiss, dass Skills auch als Slash Commands aufrufbar sind.","Ich habe eigene Skills die als user-invocable markiert sind.","Ich nutze Slash Commands im Alltag fuer schnellen Zugriff auf Workflows.","Ich habe einen Orchestrator-Skill der andere Skills koordiniert."],"recommendations":["Lerne die 10 wichtigsten eingebauten Commands: /help, /clear, /compact, /cost, /status, /model.","Verstehe: Jeder Skill kann als Slash Command genutzt werden - einfach /skill-name tippen.","Markiere deine wichtigsten Skills als user-invocable im YAML-Frontmatter.","Baue dir Shortcuts: z.B. /commit fuer Git-Commits, /review fuer Code-Reviews.","Top! Baue einen Orchestrator der mehrere Skills intelligent kombiniert."],"aiAgent":"Ein Command-Manager kann deine haeufigsten Aktionen identifizieren und als Slash Commands vorschlagen.","aiPrompt":"Welche meiner wiederkehrenden Aufgaben sollte ich als Slash Commands implementieren?"},{"id":14,"name":"Trigger & Auto-Detection","tier":"skills","desc":"Skills automatisch durch Schluesselwoerter aktivieren lassen?","related":[2,11,13,17],"levels":["Skills nur manuell aufrufen","Trigger-Woerter definiert","Zuverlaessige Auto-Detection","Multi-Trigger mit Kontext-Erkennung","Intelligentes Routing basierend auf Intent"],"theses":["Ich verstehe, dass Skills automatisch aktiviert werden wenn Trigger-Woerter in der Anfrage vorkommen.","Meine Skills haben praezise Trigger-Woerter in der Description definiert.","Die Auto-Detection meiner Skills funktioniert zuverlaessig — keine False Positives.","Ich nutze mehrere Trigger pro Skill (deutsch + englisch, Synonyme).","Meine Skills erkennen den Kontext und aktivieren sich nur wenn es wirklich passt."],"recommendations":["Verstehe: Die description im YAML-Frontmatter bestimmt die Auto-Erkennung.","Definiere 3-5 klare Trigger-Woerter pro Skill. Beispiel: erstelle skill, create skill, skill bauen.","Teste: Loest dein Skill aus wenn du die Trigger-Woerter in verschiedenen Saetzen verwendest?","Fuege deutsche UND englische Trigger hinzu fuer maximale Erkennung.","Nutze Kontext-Checks im Skill selbst um False Positives zu verhindern."],"aiAgent":"Ein Trigger-Optimizer kann deine Skill-Descriptions analysieren und bessere Trigger vorschlagen.","aiPrompt":"Analysiere die Trigger-Woerter meiner Skills und finde Ueberschneidungen oder Luecken."},{"id":15,"name":"Skill-Testing","tier":"skills","desc":"Skills systematisch testen und qualitaetssichern?","related":[11,12,16],"levels":["Kein Testing","Manuell ausprobiert","Testfaelle dokumentiert","Automatisierte Validierung","CI/CD fuer Skills"],"theses":["Ich teste neue Skills bevor ich sie produktiv einsetze.","Ich habe Testfaelle dokumentiert: Welcher Input soll welchen Output erzeugen?","Meine Skills haben eingebaute Validierung (z.B. Check ob Dateien erstellt wurden).","Ich nutze den Validator-Agent um Skill-Ergebnisse automatisch zu pruefen.","Skills werden nach Aenderungen systematisch regetestet."],"recommendations":["Teste jeden neuen Skill mit mindestens 3 verschiedenen Inputs.","Dokumentiere: Was ist der erwartete Output? Was sind Edge Cases?","Baue Validierung in den Skill ein: Prüfe am Ende ob das Ergebnis stimmt.","Nutze den Validator-Agent nach jedem Skill-Run: War das Ergebnis korrekt?","Stark! Baue eine Test-Suite die bei Skill-Aenderungen automatisch laeuft."],"aiAgent":"Ein Skill-Tester kann einen Skill mit verschiedenen Inputs durchlaufen und die Ergebnisse validieren.","aiPrompt":"Teste diesen Skill mit 5 verschiedenen Inputs und berichte ob die Ergebnisse den Erwartungen entsprechen."},{"id":16,"name":"Skill-Bibliothek","tier":"skills","desc":"Eine organisierte Sammlung von Skills pflegen und teilen?","related":[11,12,15],"levels":["Keine Skills","1-5 lose Skills","10+ organisierte Skills","Kategorisierte Bibliothek mit Index","Shared Team-Bibliothek mit Versionierung"],"theses":["Ich habe mehr als 5 eigene Skills in meinem Projekt.","Meine Skills sind nach Kategorien organisiert (z.B. content/, development/, analysis/).","Ich habe einen Index oder eine Uebersicht ueber alle verfuegbaren Skills.","Ich aktualisiere und verbessere Skills regelmaessig basierend auf Erfahrung.","Meine Skills sind so dokumentiert, dass andere Teammitglieder sie nutzen koennen."],"recommendations":["Starte mit 3 Skills fuer deine haeufigsten Aufgaben.","Organisiere nach Kategorien: z.B. .claude/skills/content/, .claude/skills/dev/.","Erstelle eine README.md mit Uebersicht aller Skills und ihren Trigger-Woertern.","Plane monatliche Skill-Reviews: Was funktioniert, was muss verbessert werden?","Exzellent! Teile deine besten Skills mit dem Team und baue eine gemeinsame Bibliothek."],"aiAgent":"Ein Skill-Indexer kann alle Skills scannen, kategorisieren und eine durchsuchbare Uebersicht erstellen.","aiPrompt":"Scanne alle meine Skills in .claude/skills/ und erstelle eine uebersichtliche Tabelle mit Name, Trigger und Beschreibung."},{"id":17,"name":"Pre-Hooks","tier":"hooks","desc":"Aktionen VOR Tool-Ausfuehrung validieren und steuern?","related":[4,14,18,19],"levels":["Weiss nicht was Hooks sind","Hooks-Konzept verstanden","Ersten Pre-Hook erstellt","Mehrere Pre-Hooks fuer Validierung","Umfassendes Hook-System"],"theses":["Ich weiss, dass Claude Code Hooks hat die vor oder nach Tool-Ausfuehrung laufen.","Ich verstehe den Unterschied zwischen Pre-Hooks und Post-Hooks.","Ich habe mindestens einen Pre-Hook implementiert (z.B. Bash-Command-Validierung).","Meine Pre-Hooks verhindern destruktive Aktionen wie rm -rf oder force-push.","Ich habe ein umfassendes Hook-System das Security und Quality Gates implementiert."],"recommendations":["Verstehe: Pre-Hooks laufen VOR einem Tool und koennen es blockieren.","Konfiguriere in .claude/settings.json unter hooks.pre_tool_call.","Starte einfach: Ein Hook der bei Bash-Commands mit rm oder force warnt.","Erweitere: Hooks fuer git push Validierung, Secret-Detection, Code-Style.","Stark! Baue ein Hook-System das als Quality Gate fuer alle Aktionen dient."],"aiAgent":"Ein Hook-Generator kann basierend auf deinen Sicherheitsanforderungen die optimalen Pre-Hooks erstellen.","aiPrompt":"Erstelle mir einen Pre-Hook der verhindert, dass Claude Code Dateien loescht die aelter als 1 Tag sind."},{"id":18,"name":"Post-Hooks","tier":"hooks","desc":"Nach Tool-Ausfuehrung automatisch reagieren?","related":[17,19,20],"levels":["Kein Wissen","Konzept verstanden","Ersten Post-Hook erstellt","Post-Hooks fuer Logging und Notifications","Event-driven Automation mit Post-Hooks"],"theses":["Ich verstehe, dass Post-Hooks NACH einer Tool-Ausfuehrung laufen.","Ich kenne Anwendungsfaelle: Logging, Notifications, Auto-Formatting.","Ich habe mindestens einen Post-Hook implementiert.","Meine Post-Hooks loggen wichtige Aktionen oder senden Benachrichtigungen.","Ich nutze Post-Hooks fuer automatisierte Workflows (z.B. Auto-Test nach Code-Aenderung)."],"recommendations":["Verstehe: Post-Hooks reagieren auf abgeschlossene Aktionen — ideal fuer Logging.","Starte mit einem Logging-Hook: Schreibe alle Bash-Commands in eine Log-Datei.","Baue einen Notification-Hook: Benachrichtigung wenn ein langer Task fertig ist.","Nutze Post-Hooks fuer Auto-Formatting: Prettier/ESLint nach jeder Datei-Aenderung.","Exzellent! Baue Event-driven Workflows: Code geaendert → Tests laufen → Report."],"aiAgent":"Ein Automation-Designer kann deine Workflows analysieren und sinnvolle Post-Hooks vorschlagen.","aiPrompt":"Welche Post-Hooks wuerden meinen Workflow am meisten verbessern? Analysiere meine haeufigsten Aktionen."},{"id":19,"name":"User Prompt Hooks","tier":"hooks","desc":"Auf User-Eingaben reagieren bevor Claude sie verarbeitet?","related":[2,14,17,20],"levels":["Unbekannt","Konzept verstanden","Ersten Prompt Hook erstellt","Context Loading via Hooks","Intelligentes Routing und Enrichment"],"theses":["Ich weiss, dass es UserPromptSubmit-Hooks gibt die auf meine Eingaben reagieren.","Ich verstehe wie Prompt Hooks Kontext automatisch laden koennen.","Ich habe einen Hook der basierend auf Schluesselwoertern Kontext laedt.","Meine Hooks reichern Prompts automatisch mit relevantem Projektkontext an.","Ich nutze Hooks fuer intelligentes Intent-Routing: Verschiedene Kontexte je nach Aufgabe."],"recommendations":["Verstehe: UserPromptSubmit-Hooks laufen wenn du Enter drueckst — vor Claude.","Starte mit einem einfachen Hook: Wenn akademie vorkommt, lade OVERVIEW.md.","Baue Keyword-Detection: Verschiedene Kontexte fuer verschiedene Themen automatisch laden.","Nutze Hooks um Telos-Kontext, Projekt-Daten oder Team-Infos automatisch bereitzustellen.","Top! Baue intelligentes Routing: Der Hook entscheidet welcher Kontext + welcher Skill."],"aiAgent":"Ein Hook-Architect kann dein Kontext-System analysieren und optimale Prompt-Hooks designen.","aiPrompt":"Erstelle einen UserPromptSubmit-Hook der bei bestimmten Keywords automatisch relevante Dateien in den Kontext laedt."},{"id":20,"name":"Hook-Debugging","tier":"hooks","desc":"Hooks debuggen, testen und Fehler beheben?","related":[17,18,19],"levels":["Hooks funktionieren nicht und ich weiss nicht warum","Kann Fehlermeldungen lesen","Nutze Logs zum Debuggen","Systematisches Hook-Testing","Monitoring und Error Recovery"],"theses":["Ich kann erkennen wenn ein Hook fehlschlaegt und die Fehlermeldung interpretieren.","Ich nutze console.log oder Logdateien um Hook-Verhalten zu debuggen.","Ich teste Hooks isoliert bevor ich sie in den Workflow integriere.","Ich habe Error-Handling in meinen Hooks (try-catch, Fallbacks).","Meine Hooks haben Monitoring und ich werde bei Fehlern benachrichtigt."],"recommendations":["Lerne: Hook-Fehler erscheinen als System-Reminders — lese sie aufmerksam.","Baue Logging in jeden Hook: Schreibe in /tmp/hook-debug.log was passiert.","Teste Hooks einzeln: Fuehre den Hook-Script manuell aus mit Test-Daten.","Implementiere try-catch: Hooks sollten niemals den gesamten Workflow blockieren.","Stark! Baue ein Dashboard das Hook-Ausfuehrungen und Fehler visualisiert."],"aiAgent":"Ein Hook-Debugger kann fehlgeschlagene Hooks analysieren und Fixes vorschlagen.","aiPrompt":"Mein Pre-Hook schlaegt fehl mit dieser Fehlermeldung: [Fehler]. Hilf mir den Fehler zu finden und zu beheben."},{"id":21,"name":"Multi-Agent Orchestration","tier":"architecture","desc":"Mehrere Agenten parallel fuer komplexe Aufgaben einsetzen?","related":[9,10,22,24],"levels":["Nur Single-Agent","Task Tool mal verwendet","Bewusst an Subagents delegiert","Parallele Agents fuer Speed","Orchestrator-Pattern mit Plan + Build + Validate"],"theses":["Ich weiss, dass ich mit dem Task-Tool spezialisierte Subagents starten kann.","Ich nutze verschiedene Agent-Typen: Builder, Validator, Explorer, Researcher.","Ich delegiere unabhaengige Aufgaben an parallele Agents.","Ich nutze das Pattern: Plan → Build (parallel) → Validate.","Ich habe einen Orchestrator-Skill der automatisch entscheidet welche Agents noetig sind."],"recommendations":["Lerne das Task-Tool: Du kannst spezialisierte Agents fuer Teilaufgaben starten.","Starte mit dem Explorer-Agent: Lass ihn Codebase-Recherche machen waehrend du planst.","Nutze parallele Builder-Agents: 3 unabhaengige Dateien = 3 parallele Agents.","Implementiere den Validate-After-Build-Pattern: Builder baut, Validator prueft.","Exzellent! Baue einen Orchestrator der Plan, Build und Validate automatisch koordiniert."],"aiAgent":"Ein Team-Coordinator kann Aufgaben analysieren, in Teilaufgaben zerlegen und optimal auf Agents verteilen.","aiPrompt":"Zerlege diese Aufgabe in unabhaengige Teilaufgaben die von parallelen Agents bearbeitet werden koennen."},{"id":22,"name":"Task Tool & Subagents","tier":"architecture","desc":"Das Task-Tool mit verschiedenen Agent-Typen gezielt einsetzen?","related":[6,10,21,24],"levels":["Kenne das Task-Tool nicht","Mal einen Subagent gestartet","Kenne verschiedene Agent-Typen","Waehle gezielt den richtigen Agent-Typ","Custom Agent-Typen und Background-Agents"],"theses":["Ich weiss, dass das Task-Tool verschiedene Agent-Typen hat (Builder, Validator, Explorer, etc.).","Ich waehle den Agent-Typ bewusst basierend auf der Aufgabe.","Ich nutze Background-Agents fuer lang laufende Aufgaben.","Ich kann Agents mit resume wieder aufnehmen wenn sie unterbrochen wurden.","Ich nutze Custom Agent-Typen fuer spezialisierte Aufgaben."],"recommendations":["Lerne die Agent-Typen: Builder (Code), Validator (Pruefen), Explorer (Suchen), Researcher (Web).","Regel: Builder fuer Code, Validator fuer Read-Only-Checks, Explorer fuer Codebase-Recherche.","Nutze run_in_background fuer Tasks die laenger als 30 Sekunden dauern.","Probiere resume: Starte einen Agent, mache etwas anderes, nimm ihn spaeter wieder auf.","Stark! Definiere eigene Agent-Typen fuer deine spezifischen Workflows."],"aiAgent":"Ein Agent-Selector kann basierend auf der Aufgabenbeschreibung den optimalen Agent-Typ empfehlen.","aiPrompt":"Welcher Agent-Typ ist fuer diese Aufgabe am besten geeignet und warum?"},{"id":23,"name":"MCP Server Integration","tier":"architecture","desc":"Model Context Protocol Server fuer externe Dienste einbinden?","related":[4,6,24,25],"levels":["MCP noch nie gehoert","Konzept verstanden","Ersten MCP Server konfiguriert","Mehrere MCP Server im Einsatz","Eigene MCP Server entwickelt"],"theses":["Ich weiss was MCP (Model Context Protocol) ist und wofuer es dient.","Ich habe mindestens einen MCP Server in .mcp.json konfiguriert.","Ich nutze MCP Server fuer Zugriff auf externe Dienste (z.B. Obsidian, n8n, Miro).","Ich kann zwischen verschiedenen MCP-Tools gezielt waehlen und sie kombinieren.","Ich habe einen eigenen MCP Server fuer spezifische Anforderungen entwickelt."],"recommendations":["Verstehe: MCP erweitert Claude Code um externe Tools — wie Plugins.","Konfiguriere deinen ersten MCP Server: z.B. Filesystem-MCP oder Obsidian-MCP.","Richte .mcp.json ein und teste ob die MCP-Tools in Claude Code verfuegbar sind.","Kombiniere mehrere MCP Server: z.B. Obsidian + n8n + Miro fuer einen Komplett-Workflow.","Exzellent! Entwickle einen eigenen MCP Server fuer deine speziellen API-Integrationen."],"aiAgent":"Ein MCP-Configurator kann verfuegbare MCP Server identifizieren und die optimale .mcp.json erstellen.","aiPrompt":"Welche MCP Server gibt es fuer [Dienst] und wie konfiguriere ich sie in meiner .mcp.json?"},{"id":24,"name":"Workflow-Design","tier":"architecture","desc":"Komplexe KI-Workflows end-to-end designen?","related":[9,21,22,25],"levels":["Einzelne Prompts","Mehrstufige Konversationen","Definierte Workflows mit Schritten","Automatisierte Pipelines","Self-improving Workflow-Systeme"],"theses":["Ich habe wiederkehrende Aufgaben als mehrstufige Workflows dokumentiert.","Meine Workflows haben klare Input-Output-Definitionen pro Schritt.","Ich nutze Skills, Hooks und Agents zusammen in integrierten Workflows.","Meine Workflows laufen weitgehend automatisch mit minimaler manueller Intervention.","Meine Workflows verbessern sich selbst durch Feedback-Loops und Memory-Updates."],"recommendations":["Dokumentiere deinen wichtigsten Workflow: Welche Schritte, welche Tools, welcher Output?","Definiere klare Schnittstellen: Was ist der Input, was ist der erwartete Output pro Schritt?","Kombiniere: Skill fuer die Logik, Hook fuer den Trigger, Agent fuer die Ausfuehrung.","Automatisiere: Ersetze manuelle Schritte durch Hooks und Agent-Delegation.","Top! Baue Feedback-Loops: Ergebnisse fliessen als Learnings zurueck in Memory und Skills."],"aiAgent":"Ein Workflow-Architect kann bestehende Prozesse analysieren und als automatisierte Claude Code Workflows redesignen.","aiPrompt":"Analysiere meinen manuellen Prozess und designe einen automatisierten Workflow mit Skills, Hooks und Agents."},{"id":25,"name":"Production Patterns","tier":"architecture","desc":"Best Practices und bewährte Muster fuer den Produktiveinsatz?","related":[4,15,21,24],"levels":["Experimentell","Grundregeln bekannt","Best Practices angewendet","Eigene Patterns dokumentiert","Patterns werden geteilt und weiterentwickelt"],"theses":["Ich kenne die Best Practices fuer Claude Code im Produktiveinsatz.","Ich nutze Patterns wie Validate-After-Build, Context-Shielding und Incremental-Approach.","Ich dokumentiere eigene Patterns die in meinem Kontext funktionieren.","Ich optimiere meine Workflows basierend auf Metriken (Zeit, Qualitaet, Cost).","Ich teile bewährte Patterns mit dem Team und lerne von anderen."],"recommendations":["Lerne die 3 Kern-Patterns: Validate-After-Build, Context-Shielding, Plan-Before-Code.","Wende sie an: Lass immer einen Validator nach dem Builder laufen.","Dokumentiere was bei dir funktioniert: Welches Pattern, welcher Kontext, welches Ergebnis.","Tracke: Wie lange dauern Aufgaben? Wie oft muss nachgebessert werden? Was kostet es?","Exzellent! Teile deine Patterns — als Skills, Blog-Posts oder in der Community."],"aiAgent":"Ein Pattern-Analyzer kann deine Claude Code Nutzung analysieren und Optimierungspotenziale identifizieren.","aiPrompt":"Analysiere meine letzten 10 Claude Code Sessions und identifiziere wiederkehrende Muster und Verbesserungsmoeglichkeiten."}],"needs":[{"id":"getting-started","name":"Erste Schritte","color":"#22C55E","icon":"🚀","question":"Wie starte ich mit Claude Code?","desc":"Installation, Setup und erste produktive Nutzung","primary":[1,3,5,6,7],"secondary":[2,4,8,11],"context":{"1":"Gute Prompts sind die Basis fuer jede Interaktion mit Claude.","2":"Context Engineering macht den Unterschied zwischen mittelmäßigen und exzellenten Ergebnissen.","3":"LLM-Verstaendnis hilft dir, Claudes Staerken und Schwaechen zu kennen.","4":"Sicherheit von Anfang an richtig machen spart Probleme spaeter.","5":"CLI-Setup ist die Grundlage fuer alles Weitere.","6":"Die richtigen Tools nutzen macht dich sofort produktiver.","7":"CLAUDE.md gibt Claude den Kontext den es fuer gute Ergebnisse braucht.","8":"Memory sorgt dafuer, dass Learnings nicht verloren gehen.","11":"Skills automatisieren wiederkehrende Aufgaben ab Tag 1."},"impactStatements":{"1":{"low":"Deine Prompts liefern mittelmässige Ergebnisse weil ihnen Struktur fehlt.","high":"Deine Prompts sind strukturiert und liefern konsistent gute Ergebnisse."},"3":{"low":"Du verstehst nicht warum Claude manchmal falsch liegt.","high":"Du kennst Claudes Staerken und umgehst seine Schwaechen gezielt."},"5":{"low":"Claude Code ist nicht installiert oder du nutzt es selten.","high":"Claude Code ist dein taegliches Arbeitstool."},"6":{"low":"Du nutzt nur Bash statt die spezialisierten Tools.","high":"Du nutzt Read, Edit, Grep und Glob gezielt fuer maximale Effizienz."},"7":{"low":"Claude kennt dein Projekt nicht und macht dauernd falsche Annahmen.","high":"CLAUDE.md gibt Claude alles was es ueber dein Projekt wissen muss."}},"actionPlan":{"month1":"Setup: Claude Code installieren, CLI lernen, erste CLAUDE.md erstellen","month2":"Alltag: Taeglich nutzen, 6 Kern-Tools lernen, erste 3 Skills bauen","month3":"Vertiefung: Memory einrichten, Plan Mode nutzen, Workflow optimieren"},"cta":{"title":"Der Start ist einfacher als du denkst","text":"In 30 Minuten hast du Claude Code installiert und dein erstes Projekt konfiguriert.","btn":"Jetzt starten"}},{"id":"productivity","name":"Mehr Produktivitaet","color":"#3B82F6","icon":"⚡","question":"Wie werde ich mit Claude Code schneller?","desc":"Workflows beschleunigen und mehr Output pro Stunde","primary":[6,9,10,11,13,21,22],"secondary":[1,2,5,7,8,24],"context":{"1":"Bessere Prompts = weniger Iterationen = schneller fertig.","2":"Guter Kontext verhindert dass Claude nachfragen muss.","5":"Effizientes CLI-Setup spart bei jeder Interaktion Zeit.","6":"Die richtigen Tools vermeiden Umwege.","7":"CLAUDE.md reduziert Erklaerungsaufwand in jeder Session.","8":"Memory verhindert dass du die gleichen Erklaerungen wiederholen musst.","9":"Plan Mode verhindert falsche Ansaetze die Zeit kosten.","10":"Context Management verhindert dass Claude vergisst was ihr gemacht habt.","11":"Skills automatisieren wiederkehrende 5-Minuten-Aufgaben auf 30 Sekunden.","13":"Slash Commands geben dir Sofortzugriff auf haeufige Workflows.","21":"Multi-Agent macht 3 Aufgaben parallel statt nacheinander.","22":"Der richtige Agent-Typ fuer jede Aufgabe spart Iterations-Zyklen.","24":"Definierte Workflows eliminieren Denkzeit bei wiederkehrenden Aufgaben."},"impactStatements":{"6":{"low":"Du nutzt Bash fuer alles und verschwendest Zeit mit Workarounds.","high":"Jedes Tool wird optimal eingesetzt — kein Umweg, keine Verschwendung."},"9":{"low":"Du faengst an zu coden ohne Plan und musst oft zurueckbauen.","high":"Plan Mode gibt dir einen durchdachten Ansatz bevor du loslegst."},"10":{"low":"Claude vergisst nach 30 Minuten was ihr besprochen habt.","high":"Du managst den Context aktiv und Claude behaelt alles im Blick."},"11":{"low":"Jede wiederkehrende Aufgabe dauert immer gleich lang.","high":"Skills automatisieren Routine — du sparst Stunden pro Woche."},"21":{"low":"Alles laeuft nacheinander — eine Aufgabe nach der anderen.","high":"Parallele Agents erledigen 3 Aufgaben gleichzeitig."},"22":{"low":"Du nutzt immer den gleichen Agent-Typ, auch wenn er nicht passt.","high":"Der richtige Agent-Typ fuer jede Aufgabe maximiert die Qualitaet."}},"actionPlan":{"month1":"Grundlagen: Tool-Nutzung optimieren, Plan Mode einsetzen, erste Skills bauen","month2":"Automatisierung: 10 Skills erstellen, Slash Commands einrichten, Workflows dokumentieren","month3":"Skalierung: Multi-Agent nutzen, Background-Agents, Workflow-Pipelines"},"cta":{"title":"Du koenntest 3x schneller arbeiten","text":"Skills, Multi-Agent und optimierte Workflows machen den Unterschied.","btn":"Produktivitaet steigern"}},{"id":"automation","name":"Automatisierung","color":"#EF4444","icon":"🤖","question":"Wie automatisiere ich Workflows?","desc":"Hooks, Trigger und automatische Pipelines einrichten","primary":[14,17,18,19,20,24],"secondary":[2,7,8,11,21,23],"context":{"2":"Context Engineering ist die Basis fuer automatisches Context Loading.","7":"CLAUDE.md ist der erste Schritt zur Automatisierung — dauerhafte Konfiguration.","8":"Memory ermoeglicht dass Automationen auf vergangenen Learnings aufbauen.","11":"Skills sind die Bausteine aus denen Automationen zusammengesetzt werden.","14":"Trigger-Woerter aktivieren Skills automatisch — der Startpunkt jeder Automation.","17":"Pre-Hooks validieren Aktionen bevor sie ausgefuehrt werden.","18":"Post-Hooks reagieren auf Ergebnisse und starten Folgeprozesse.","19":"User Prompt Hooks laden automatisch den richtigen Kontext.","20":"Hook-Debugging ist essentiell wenn Automationen nicht funktionieren.","21":"Multi-Agent ermoeglicht parallele Ausfuehrung in Pipelines.","23":"MCP Server verbinden externe Dienste in automatisierte Workflows.","24":"Workflow-Design ist die Architektur hinter jeder Automation."},"impactStatements":{"14":{"low":"Du rufst jeden Skill manuell auf — kein automatischer Flow.","high":"Skills starten automatisch wenn der richtige Kontext erkannt wird."},"17":{"low":"Destruktive Aktionen passieren ohne Warnung.","high":"Pre-Hooks fangen gefaehrliche Aktionen ab bevor Schaden entsteht."},"18":{"low":"Ergebnisse werden nicht automatisch weiterverarbeitet.","high":"Post-Hooks starten automatisch Folgeschritte nach jeder Aktion."},"19":{"low":"Du musst jedes Mal manuell den Kontext laden.","high":"Prompt Hooks laden automatisch den richtigen Kontext pro Aufgabe."},"20":{"low":"Hooks gehen kaputt und du weisst nicht warum.","high":"Debugging und Monitoring zeigen dir sofort wo Hooks haken."},"24":{"low":"Jeder Durchlauf ist anders — kein reproduzierbarer Prozess.","high":"Definierte Workflows laufen zuverlaessig und verbessern sich ueber Zeit."}},"actionPlan":{"month1":"Grundlagen: Hook-System verstehen, ersten Pre-Hook und Post-Hook bauen","month2":"Aufbau: Prompt Hooks fuer Context Loading, 5+ automatisierte Workflows","month3":"Mastery: Pipeline-Automation, MCP Integration, Self-improving Workflows"},"cta":{"title":"Manuelle Arbeit ist verschwendete Zeit","text":"Hooks und automatisierte Workflows erledigen Routine — du fokussierst auf Kreativitaet.","btn":"Workflows automatisieren"}},{"id":"custom-skills","name":"Eigene Skills","color":"#F97316","icon":"🛠️","question":"Wie baue ich eigene Skills?","desc":"Professionelle Claude Code Skills erstellen und pflegen","primary":[11,12,13,14,15,16],"secondary":[1,7,9,24],"context":{"1":"Gutes Prompt Engineering ist die Basis fuer effektive Skills.","7":"CLAUDE.md definiert die Umgebung in der Skills laufen.","9":"Plan Mode hilft beim Design komplexer Skills.","11":"Skill-Erstellung ist das Handwerk — die Grundtechnik.","12":"Skill-Architektur sorgt fuer wartbare, erweiterbare Skills.","13":"Slash Commands machen Skills sofort zugaenglich.","14":"Trigger-Woerter sorgen fuer automatische Skill-Erkennung.","15":"Testing stellt sicher dass Skills zuverlaessig funktionieren.","16":"Eine Bibliothek macht dein Skill-Wissen skalierbar.","24":"Workflow-Design zeigt wie Skills in groessere Prozesse eingebettet werden."},"impactStatements":{"11":{"low":"Du hast keine eigenen Skills — alles ist manuell.","high":"Du hast Skills fuer alle wichtigen Workflows."},"12":{"low":"Deine Skills sind unstrukturiert und schwer zu warten.","high":"Klare Architektur macht Skills wartbar und erweiterbar."},"13":{"low":"Skills sind schwer zu finden und aufzurufen.","high":"Slash Commands geben dir Sofortzugriff auf jeden Skill."},"14":{"low":"Skills muessen immer manuell gestartet werden.","high":"Auto-Detection erkennt wann ein Skill gebraucht wird."},"15":{"low":"Skills brechen ueberraschend — du vertraust ihnen nicht.","high":"Getestete Skills funktionieren zuverlaessig."},"16":{"low":"Skills liegen verstreut — kein Ueberblick.","high":"Organisierte Bibliothek mit Index und Kategorien."}},"actionPlan":{"month1":"Basics: SKILL.md Syntax lernen, 3 erste Skills erstellen und testen","month2":"Qualitaet: Progressive Disclosure, Testfaelle, Trigger-Optimierung","month3":"Skalierung: Bibliothek aufbauen, Skills kategorisieren, im Team teilen"},"cta":{"title":"Deine Workflows verdienen eigene Skills","text":"In 30 Minuten hast du deinen ersten produktiven Skill — und sparst ab sofort Zeit.","btn":"Ersten Skill bauen"}},{"id":"multi-agent","name":"Multi-Agent Power","color":"#A855F7","icon":"👥","question":"Wie nutze ich mehrere Agenten parallel?","desc":"Task Tool, Subagents und Orchestration beherrschen","primary":[9,10,21,22,24,25],"secondary":[1,6,11,23],"context":{"1":"Gute Prompts fuer Agents sind noch wichtiger als fuer direkte Interaktion.","6":"Tools muessen beherrscht werden bevor man sie an Agents delegiert.","9":"Plan Mode ist der ideale Einstieg in Multi-Agent Workflows.","10":"Context Management wird bei mehreren Agents noch kritischer.","11":"Skills koennen als Bausteine fuer Agent-Workflows dienen.","21":"Orchestration ist die Kunst, mehrere Agents effektiv zu koordinieren.","22":"Das Task Tool ist das zentrale Werkzeug fuer Subagent-Management.","23":"MCP erweitert was Agents mit externen Diensten tun koennen.","24":"Workflow-Design bestimmt wie Agents zusammenarbeiten.","25":"Production Patterns sind bewaehrte Muster fuer Multi-Agent Setups."},"impactStatements":{"9":{"low":"Ohne Plan startest du Agents die sich gegenseitig blockieren.","high":"Plan Mode gibt dir die Architektur bevor Agents loslegen."},"10":{"low":"Der Hauptagent verliert den Ueberblick bei vielen Subagents.","high":"Context Shielding haelt den Hauptagent schlank und fokussiert."},"21":{"low":"Alles laeuft seriell — keine Parallelisierung.","high":"Parallele Agents erledigen Aufgaben in einem Bruchteil der Zeit."},"22":{"low":"Du kennst nur einen Agent-Typ und nutzt ihn fuer alles.","high":"Builder, Validator, Explorer — jeder Agent ist spezialisiert."},"24":{"low":"Agent-Workflows sind chaotisch und unvorhersehbar.","high":"Klar definierte Workflows mit reproduzierbaren Ergebnissen."},"25":{"low":"Du wiederholst Fehler weil es keine dokumentierten Patterns gibt.","high":"Bewaehrte Patterns beschleunigen jeden neuen Workflow."}},"actionPlan":{"month1":"Basics: Task Tool lernen, Agent-Typen verstehen, erste Delegation","month2":"Parallel: 2-3 Agents parallel starten, Plan-Build-Validate Pattern einueben","month3":"Mastery: Orchestrator-Skill, Background-Agents, Pipeline-Workflows"},"cta":{"title":"Ein Agent ist gut — drei sind besser","text":"Multi-Agent Workflows machen dich 3x produktiver bei gleichbleibender Qualitaet.","btn":"Multi-Agent lernen"}},{"id":"integration","name":"System-Integration","color":"#EC4899","icon":"🔗","question":"Wie verbinde ich Claude Code mit anderen Tools?","desc":"MCP Server, externe APIs und Tool-Oekosystem integrieren","primary":[4,7,23,24,25],"secondary":[2,5,6,17,18,21],"context":{"2":"Context Engineering definiert wie externe Daten in den Workflow fliessen.","4":"Sicherheit ist bei Integrationen besonders wichtig — API-Keys, Permissions.","5":"CLI-Setup muss fuer Integrationen richtig konfiguriert sein.","6":"Tools wie WebFetch und Bash sind die Bruecke zu externen Systemen.","7":"CLAUDE.md dokumentiert welche Integrationen verfuegbar sind.","17":"Pre-Hooks koennen externe API-Calls validieren.","18":"Post-Hooks koennen Ergebnisse an externe Systeme weiterleiten.","21":"Multi-Agent ermoeglicht parallele Interaktion mit verschiedenen Systemen.","23":"MCP ist der Standard fuer Tool-Integration in Claude Code.","24":"Workflow-Design zeigt wie Integrationen in Prozesse eingebettet werden.","25":"Production Patterns fuer zuverlaessige Integrationen."},"impactStatements":{"4":{"low":"Integrationen exponieren API-Keys und Credentials.","high":"Sicherheitskonzept schuetzt alle Credentials und Zugaenge."},"7":{"low":"Claude weiss nicht welche Integrationen verfuegbar sind.","high":"CLAUDE.md dokumentiert alle verfuegbaren APIs und MCP Server."},"23":{"low":"Claude Code ist isoliert — keine Verbindung zu deinen anderen Tools.","high":"MCP Server verbinden Obsidian, n8n, Miro und mehr nahtlos."},"24":{"low":"Integrationen sind ad-hoc — kein reproduzierbarer Prozess.","high":"Definierte Workflows nutzen Integrationen systematisch."},"25":{"low":"Integrationen brechen und niemand weiss warum.","high":"Bewaehrte Patterns sorgen fuer zuverlaessige Integrationen."}},"actionPlan":{"month1":"Grundlagen: MCP Konzept verstehen, ersten MCP Server einrichten","month2":"Ausbau: 3+ MCP Server konfigurieren, Workflows mit externen Tools","month3":"Mastery: Eigene MCP Server, Pipeline-Integrationen, Monitoring"},"cta":{"title":"Claude Code allein ist erst der Anfang","text":"MCP Server verbinden Claude Code mit deinem gesamten Tool-Oekosystem.","btn":"Integrationen aufbauen"}}],"export":{"defaultCtas":{"foundation":{"title":"Deine KI-Grundlagen brauchen Aufmerksamkeit","text":"Ohne solides Prompt Engineering und LLM-Verstaendnis bleiben alle anderen Features wirkungslos."},"claude-code":{"title":"Du nutzt Claude Code unter deinen Moeglichkeiten","text":"CLI, Tools, CLAUDE.md und Memory — die Core-Features machen den groessten Unterschied."},"skills":{"title":"Deine Skills sind dein groesster Hebel","text":"Eigene Skills automatisieren wiederkehrende Aufgaben und machen dich exponentiell produktiver."},"hooks":{"title":"Hooks und Automation fehlen in deinem Setup","text":"Pre-Hooks, Post-Hooks und Prompt Hooks machen den Unterschied zwischen manuellem und automatischem Workflow."},"architecture":{"title":"Du bist bereit fuer die naechste Stufe","text":"Multi-Agent Orchestration, MCP Integration und Production Patterns machen dich zum Power User."}}}};
+</script>
+<script>
+/**
+ * Assessment Engine v5.0.0
+ * Reusable assessment engine - data-driven from CONFIG object
+ *
+ * Expects: const CONFIG = { meta, theme, labels, scoring, tiers, levels, components, needs, export } to be defined before this script
+ * Expects: Chart.js to be loaded (CDN)
+ */
+(function(CONFIG) {
+  'use strict';
+
+  // Derived constants
+  const COMPONENT_COUNT = CONFIG.components.length;
+  const THESES_COUNT = CONFIG.components[0].theses.length;
+  const STORAGE_PREFIX = 'assess-' + CONFIG.meta.id;
+
+  // === STATE ===
+  let scores = new Array(COMPONENT_COUNT).fill(1);
+  let checkStates = Array.from({length: COMPONENT_COUNT}, () => new Array(THESES_COUNT).fill(false));
+  let touched = new Array(COMPONENT_COUNT).fill(false);
+  let activeNeed = null;
+  let miniRadarChart = null, resultsRadarChart = null;
+
+  function loadState() {
+    const p = new URLSearchParams(window.location.search);
+    const needParam = p.get('need');
+    if (needParam && CONFIG.needs.find(n => n.id === needParam)) {
+      activeNeed = needParam;
+    }
+    const s = p.get('s');
+    if (s) {
+      const d = s.replace(/-/g,'');
+      if (d.length === COMPONENT_COUNT) {
+        scores = d.split('').map(x => Math.max(1, Math.min(5, parseInt(x)||1)));
+        scores.forEach((sc, i) => { for(let t=0;t<THESES_COUNT;t++) checkStates[i][t] = t < (sc===1?0:sc); });
+        touched = new Array(COMPONENT_COUNT).fill(true);
+        showScreen('results');
+        return;
+      }
+    }
+    const sv = localStorage.getItem(STORAGE_PREFIX + '-scores');
+    if (sv) try { const q = JSON.parse(sv); if (Array.isArray(q)&&q.length===COMPONENT_COUNT) scores = q; } catch(e){}
+    const cs = localStorage.getItem(STORAGE_PREFIX + '-checks');
+    if (cs) try { const q = JSON.parse(cs); if (Array.isArray(q)&&q.length===COMPONENT_COUNT) checkStates = q; } catch(e){}
+    const tv = localStorage.getItem(STORAGE_PREFIX + '-touched');
+    if (tv) try { const q = JSON.parse(tv); if (Array.isArray(q)&&q.length===COMPONENT_COUNT) touched = q; } catch(e){}
+    const savedNeed = localStorage.getItem(STORAGE_PREFIX + '-need');
+    if (!activeNeed && savedNeed) activeNeed = savedNeed;
+  }
+
+  function saveState() {
+    localStorage.setItem(STORAGE_PREFIX + '-scores', JSON.stringify(scores));
+    localStorage.setItem(STORAGE_PREFIX + '-checks', JSON.stringify(checkStates));
+    localStorage.setItem(STORAGE_PREFIX + '-touched', JSON.stringify(touched));
+    localStorage.setItem(STORAGE_PREFIX + '-need', activeNeed || '');
+    const h = JSON.parse(localStorage.getItem(STORAGE_PREFIX + '-history')||'[]');
+    const today = new Date().toISOString().split('T')[0];
+    const idx = h.findIndex(x => x.date===today);
+    if (idx>=0) h[idx].scores=[...scores]; else h.push({date:today,scores:[...scores]});
+    if (h.length>30) h.shift();
+    localStorage.setItem(STORAGE_PREFIX + '-history', JSON.stringify(h));
+  }
+
+  // === NEED FUNCTIONS ===
+  function renderNeedLanding() {
+    const grid = document.getElementById('needsGrid');
+    grid.innerHTML = CONFIG.needs.map(n => `
+      <div class="need-card" onclick="selectNeed('${n.id}')" style="--need-color:${n.color}; border-color:${n.color}20">
+        <span class="need-icon">${n.icon}</span>
+        <div class="need-name">${n.name}</div>
+        <div class="need-divider" style="background:${n.color}"></div>
+        <div class="need-question">${n.question}</div>
+      </div>
+    `).join('');
+  }
+
+  function selectNeed(needId) {
+    activeNeed = needId;
+    localStorage.setItem(STORAGE_PREFIX + '-need', needId);
+    showScreen('assessment');
+  }
+
+  function startKomplettCheck() {
+    activeNeed = null;
+    localStorage.setItem(STORAGE_PREFIX + '-need', '');
+    document.getElementById('landingPyramidSection').classList.add('visible');
+    document.getElementById('landingNeedsSection').classList.add('hidden');
+  }
+
+  function showNeedsLanding() {
+    document.getElementById('landingPyramidSection').classList.remove('visible');
+    document.getElementById('landingNeedsSection').classList.remove('hidden');
+  }
+
+  function applyNeedContext() {
+    const banner = document.getElementById('needHeaderBanner');
+    document.querySelectorAll('.need-context-badge').forEach(b => b.remove());
+    document.querySelectorAll('.slider-item').forEach(s => s.classList.remove('need-dimmed', 'need-primary', 'need-secondary'));
+
+    if (!activeNeed) {
+      banner.style.display = 'none';
+      return;
+    }
+    const need = CONFIG.needs.find(n => n.id === activeNeed);
+    banner.style.display = 'flex';
+    banner.style.background = `color-mix(in srgb, ${need.color} 10%, var(--bg-card))`;
+    banner.style.border = `1px solid color-mix(in srgb, ${need.color} 30%, var(--gray-dark))`;
+    banner.innerHTML = `<div class="need-header-icon">${need.icon}</div><div><h3 style="color:${need.color}">Assessment fuer: ${need.name}</h3><p style="color:var(--gray-light)">${need.desc}</p></div>`;
+
+    const allItems = document.querySelectorAll('.slider-item');
+    let agentIdx = 0;
+    CONFIG.tiers.forEach(tier => {
+      CONFIG.components.filter(a => a.tier === tier.id).forEach(agent => {
+        const item = allItems[agentIdx];
+        if (item) {
+          const isPrimary = need.primary.includes(agent.id);
+          const isSecondary = need.secondary.includes(agent.id);
+          if (isPrimary) {
+            item.classList.add('need-primary');
+            if (need.context[agent.id]) {
+              const badge = document.createElement('div');
+              badge.className = 'need-context-badge primary';
+              badge.style.borderLeftColor = need.color;
+              badge.style.background = `color-mix(in srgb, ${need.color} 8%, transparent)`;
+              badge.style.color = need.color;
+              badge.innerHTML = `<strong>Wichtig fuer ${need.name}:</strong> ${need.context[agent.id]}`;
+              item.insertBefore(badge, item.firstChild);
+            }
+          } else if (isSecondary) {
+            item.classList.add('need-secondary');
+            if (need.context[agent.id]) {
+              const badge = document.createElement('div');
+              badge.className = 'need-context-badge secondary';
+              badge.innerHTML = `Unterstuetzt dein Ziel: ${need.context[agent.id]}`;
+              item.insertBefore(badge, item.firstChild);
+            }
+          } else {
+            item.classList.add('need-dimmed');
+          }
+        }
+        agentIdx++;
+      });
+    });
+  }
+
+  function getNeedScore(needId) {
+    const need = CONFIG.needs.find(n => n.id === needId);
+    if (!need) return 0;
+    let totalWeight = 0, weightedSum = 0;
+    need.primary.forEach(id => { weightedSum += scores[id-1] * CONFIG.scoring.needPrimaryMultiplier; totalWeight += CONFIG.scoring.needPrimaryMultiplier; });
+    need.secondary.forEach(id => { weightedSum += scores[id-1] * CONFIG.scoring.needSecondaryMultiplier; totalWeight += CONFIG.scoring.needSecondaryMultiplier; });
+    return totalWeight > 0 ? (weightedSum / totalWeight / 5) * 100 : 0;
+  }
+
+  function calcNeedPriority(agent, needId) {
+    const basePriority = calcPriority(agent);
+    if (!needId) return basePriority;
+    const need = CONFIG.needs.find(n => n.id === needId);
+    if (!need) return basePriority;
+    if (need.primary.includes(agent.id)) return basePriority * CONFIG.scoring.needPrimaryMultiplier;
+    if (need.secondary.includes(agent.id)) return basePriority * CONFIG.scoring.needSecondaryMultiplier;
+    return basePriority * CONFIG.scoring.needIrrelevantMultiplier;
+  }
+
+  function renderNeedResults() {
+    if (!activeNeed) return;
+    const need = CONFIG.needs.find(n => n.id === activeNeed);
+    const sc = getNeedScore(activeNeed);
+    const col = sc >= 70 ? 'var(--score-high)' : sc >= 40 ? 'var(--score-mid)' : 'var(--score-low)';
+
+    const weaknesses = need.primary
+      .map(id => ({id, score: scores[id-1], agent: CONFIG.components[id-1]}))
+      .filter(a => a.score <= 2)
+      .sort((a,b) => a.score - b.score)
+      .slice(0, 3);
+
+    const strengths = need.primary
+      .map(id => ({id, score: scores[id-1], agent: CONFIG.components[id-1]}))
+      .filter(a => a.score >= 4)
+      .sort((a,b) => b.score - a.score)
+      .slice(0, 3);
+
+    const allRelevant = [...need.primary, ...need.secondary];
+    const blockades = CONFIG.components
+      .filter(a => !allRelevant.includes(a.id) && scores[a.id-1] <= 2)
+      .filter(a => a.related.some(r => need.primary.includes(r)))
+      .slice(0, 3);
+
+    const needScoreLabels = CONFIG.labels.needScoreLabels;
+    let html = `<div class="need-score-section">
+      <div class="need-score-circle" style="border-color:${need.color}">
+        <div class="need-score-num" style="color:${need.color}">${sc >= 40 && sc < 80 ? sc.toFixed(1) : Math.round(sc)}</div>
+        <div style="font-size:0.8rem;color:var(--gray-light)">%</div>
+      </div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:4px">${need.name}-Readiness</div>
+      <div style="font-size:0.85rem;color:var(--gray-light)">${sc >= 70 ? needScoreLabels.good : sc >= 40 ? needScoreLabels.medium : needScoreLabels.critical}</div>
+    </div>`;
+
+    if (weaknesses.length > 0) {
+      html += `<div class="impact-section"><h3 style="color:var(--score-low)">\u26A0 Top-Schwachstellen</h3>`;
+      weaknesses.forEach(w => {
+        const impact = need.impactStatements[w.id];
+        html += `<div class="impact-card weakness"><h4>${w.agent.name} (Score: ${w.score}/5)</h4><p>${impact ? impact.low : w.agent.recommendations[w.score-1]}</p></div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (strengths.length > 0) {
+      html += `<div class="impact-section"><h3 style="color:var(--score-high)">\u2713 Dein Fundament</h3>`;
+      strengths.forEach(s => {
+        const impact = need.impactStatements[s.id];
+        html += `<div class="impact-card strength"><h4>${s.agent.name} (Score: ${s.score}/5)</h4><p>${impact ? impact.high : 'Gut aufgestellt \u2014 weiter so!'}</p></div>`;
+      });
+      html += `</div>`;
+    }
+
+    if (blockades.length > 0) {
+      html += `<div class="impact-section"><h3 style="color:var(--score-mid)">\uD83D\uDD17 Systemblockaden</h3><p style="font-size:0.82rem;color:var(--gray-light);margin-bottom:12px">Diese Bausteine sind nicht direkt Teil deines Ziels, aber sie blockieren den Erfolg:</p>`;
+      blockades.forEach(b => {
+        const affected = b.related.filter(r => need.primary.includes(r)).map(r => CONFIG.components[r-1].name);
+        html += `<div class="impact-card blockade"><h4>${b.name} (Score: ${scores[b.id-1]}/5)</h4><p>Blockiert: ${affected.join(', ')}</p></div>`;
+      });
+      html += `</div>`;
+    }
+
+    document.getElementById('needGoalContent').innerHTML = html;
+  }
+
+  function render90DayPlan() {
+    if (!activeNeed) return;
+    const need = CONFIG.needs.find(n => n.id === activeNeed);
+
+    const allAgents = [...need.primary.map(id => ({id, weight: CONFIG.scoring.needPrimaryMultiplier})), ...need.secondary.map(id => ({id, weight: CONFIG.scoring.needSecondaryMultiplier}))];
+    const sorted = allAgents
+      .map(a => ({...a, score: scores[a.id-1], agent: CONFIG.components[a.id-1]}))
+      .sort((a,b) => (a.score - b.score) || (b.weight - a.weight));
+
+    const month1 = sorted.filter(a => a.score <= 2).slice(0, 4);
+    const month2 = sorted.filter(a => a.score === 3).slice(0, 4);
+    const month3 = sorted.filter(a => a.score >= 4).slice(0, 4);
+    if (month1.length === 0) month1.push(...sorted.slice(0, 2));
+    if (month2.length === 0) month2.push(...sorted.filter(a => !month1.includes(a)).slice(0, 2));
+
+    const months = [
+      {num: 1, title: need.actionPlan.month1, items: month1, color: 'var(--score-low)'},
+      {num: 2, title: need.actionPlan.month2, items: month2, color: 'var(--score-mid)'},
+      {num: 3, title: need.actionPlan.month3, items: month3, color: 'var(--score-high)'}
+    ];
+
+    let html = `<p style="color:var(--gray-light);font-size:0.9rem;margin-bottom:24px">Dein personalisierter Aktionsplan basierend auf deinen Scores \u2014 priorisiert fuer <strong style="color:${need.color}">${need.name}</strong>.</p>`;
+
+    months.forEach(m => {
+      html += `<div class="plan-month"><div class="plan-month-header"><div class="plan-month-num" style="background:${m.color}">M${m.num}</div><div><div class="plan-month-title">Monat ${m.num}</div><div class="plan-month-desc">${m.title}</div></div></div>`;
+      if (m.items.length === 0) {
+        html += `<div style="padding:10px 0;font-size:0.85rem;color:var(--gray-light)">Keine dringenden Massnahmen \u2014 fokussiere dich auf die anderen Monate.</div>`;
+      }
+      m.items.forEach(a => {
+        const scCol = a.score <= 2 ? 'var(--score-low)' : a.score === 3 ? 'var(--score-mid)' : 'var(--score-high)';
+        html += `<div class="plan-action"><div class="plan-action-score" style="background:${scCol}">${a.score}</div><div class="plan-action-info"><div class="plan-action-name">${a.agent.name}</div><div class="plan-action-tip">${a.agent.recommendations[a.score-1]}</div><div class="plan-action-agent">KI-Agent: ${a.agent.aiAgent.substring(0, 100)}...</div></div></div>`;
+      });
+      html += `</div>`;
+    });
+
+    document.getElementById('planContent').innerHTML = html;
+  }
+
+  // === NAVIGATION ===
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-'+id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    if (id==='assessment') applyNeedContext();
+    if (id==='results') renderResults();
+    if (id==='export') renderExport();
+  }
+
+  function jumpToTier(tierIndex) {
+    showScreen('assessment');
+    document.querySelectorAll('.tier-tab').forEach((t,i) => t.classList.toggle('active', i===tierIndex));
+    document.querySelectorAll('.slider-group').forEach((g,i) => g.classList.toggle('active', i===tierIndex));
+  }
+
+  function jumpToAgent(agentId) {
+    const agent = CONFIG.components[agentId-1];
+    const tierIdx = CONFIG.tiers.findIndex(t => t.id === agent.tier);
+    showScreen('assessment');
+    document.querySelectorAll('.tier-tab').forEach((t,i) => t.classList.toggle('active', i===tierIdx));
+    document.querySelectorAll('.slider-group').forEach((g,i) => g.classList.toggle('active', i===tierIdx));
+    setTimeout(() => {
+      const items = document.querySelectorAll('.slider-group.active .slider-item');
+      const localIdx = CONFIG.components.filter(a => a.tier === agent.tier).findIndex(a => a.id === agentId);
+      if (items[localIdx]) items[localIdx].scrollIntoView({behavior:'smooth', block:'center'});
+    }, 100);
+  }
+
+  // === ASSESSMENT ===
+  function initAssessment() {
+    const tabsEl = document.getElementById('tierTabs');
+    const groupsEl = document.getElementById('sliderGroups');
+    CONFIG.tiers.forEach((tier, ti) => {
+      const tiersComponentCount = CONFIG.components.filter(a => a.tier === tier.id).length;
+      const tab = document.createElement('button');
+      tab.className = 'tier-tab'+(ti===0?' active':'');
+      tab.innerHTML = `${tier.name} <span class="tier-tab-badge" id="tier-badge-${ti}">0/${tiersComponentCount}</span>`;
+      tab.style.setProperty('--active-tier-color', tier.color);
+      tab.onclick = () => { document.querySelectorAll('.tier-tab').forEach((t,i)=>t.classList.toggle('active',i===ti)); document.querySelectorAll('.slider-group').forEach((g,i)=>g.classList.toggle('active',i===ti)); };
+      tabsEl.appendChild(tab);
+
+      const group = document.createElement('div');
+      group.className = 'slider-group'+(ti===0?' active':'');
+      CONFIG.components.filter(a=>a.tier===tier.id).forEach(agent => {
+        const idx = agent.id-1;
+        const item = document.createElement('div');
+        item.className = 'slider-item';
+        const lvlTags = ['','Basic','Definiert','Managed','Optimized'];
+        const lvlColors = ['','#F97316','#F59E0B','#22C55E','#3B82F6'];
+        const thesenHtml = agent.theses.map((t,ti) => {
+          const chk = checkStates[idx][ti];
+          return `<div class="these-item ${chk?'checked':''}" role="checkbox" aria-checked="${chk}" tabindex="0" onclick="toggleThese(${agent.id},${ti},this)" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleThese(${agent.id},${ti},this);}">
+            <div class="these-cb ${chk?'checked':''}" aria-hidden="true"></div>
+            <div class="these-text">${t}</div>
+            ${ti>0?`<span class="these-level-tag" style="background:${lvlColors[ti]}">${lvlTags[ti]}</span>`:''}
+          </div>`;
+        }).join('');
+        const sc = scores[idx];
+        const emp = agent.recommendations[sc-1];
+        const empClass = sc>=4?'good':'action';
+        item.innerHTML = `
+          <div class="slider-label">
+            <span class="slider-name">${agent.id}. ${agent.name}</span>
+            <span class="slider-score" id="score-${agent.id}" style="color:${tier.color}">${sc}</span>
+          </div>
+          <div class="slider-desc">${agent.desc}</div>
+          <div class="slider-track"><div class="slider-fill" id="fill-${agent.id}" style="background:${tier.color};width:${(sc-1)/4*100}%"></div><input type="range" min="1" max="5" value="${sc}" style="--slider-color:${tier.color}" oninput="updateSlider(${agent.id},this.value)" aria-label="${agent.name}"></div>
+          <div class="slider-levels">${agent.levels.map((l,i)=>`<span title="${l}">${i+1}</span>`).join('')}</div>
+          <div class="thesen-list"><div class="thesen-header">${CONFIG.labels.thesesHeader}</div>${thesenHtml}</div>
+          <div class="empfehlung-box ${empClass}" id="emp-${agent.id}"><div class="empfehlung-label ${empClass}">${sc>=4?'Weiter so':'Naechster Schritt'}</div>${emp}</div>
+          <div class="ki-agent-hint"><strong>KI-Agent-Tipp:</strong> ${agent.aiAgent}</div>
+        `;
+        group.appendChild(item);
+      });
+      groupsEl.appendChild(group);
+    });
+    initMiniRadar(); updateProgress(); updateTierAverages(); updateTierBadges();
+  }
+
+  function toggleThese(agentId, theseIdx, el) {
+    const idx = agentId-1;
+    touched[idx] = true;
+    checkStates[idx][theseIdx] = !checkStates[idx][theseIdx];
+    const cb = el.querySelector('.these-cb');
+    cb.classList.toggle('checked');
+    el.classList.toggle('checked');
+    el.setAttribute('aria-checked', checkStates[idx][theseIdx]);
+    const checked = checkStates[idx].filter(Boolean).length;
+    const newScore = CONFIG.scoring.checkToScoreMap[checked];
+    scores[idx] = newScore;
+    syncSliderUI(agentId);
+    updateAll();
+  }
+
+  function updateSlider(agentId, value) {
+    const idx = agentId-1;
+    touched[idx] = true;
+    scores[idx] = parseInt(value);
+    syncSliderUI(agentId);
+    updateAll();
+  }
+
+  function syncSliderUI(agentId) {
+    const idx = agentId-1;
+    const v = scores[idx];
+    const agent = CONFIG.components[idx];
+    const tier = CONFIG.tiers.find(t=>t.id===agent.tier);
+    document.getElementById('score-'+agentId).textContent = v;
+    document.getElementById('fill-'+agentId).style.width = ((v-1)/4*100)+'%';
+    const slider = document.querySelector(`#fill-${agentId}`).parentElement.querySelector('input');
+    if (slider) slider.value = v;
+    const empEl = document.getElementById('emp-'+agentId);
+    if (empEl) {
+      const cls = v>=4?'good':'action';
+      empEl.className = 'empfehlung-box '+cls;
+      empEl.innerHTML = `<div class="empfehlung-label ${cls}">${v>=4?'Weiter so':'Naechster Schritt'}</div>${agent.recommendations[v-1]}`;
+    }
+  }
+
+  function updateAll() {
+    updateMiniRadar(); updateTierAverages(); updateProgress(); saveState();
+  }
+
+  function updateTierBadges() {
+    CONFIG.tiers.forEach((t, ti) => {
+      const agents = CONFIG.components.filter(a => a.tier === t.id);
+      const tiersComponentCount = agents.length;
+      const count = agents.filter(a => touched[a.id-1]).length;
+      const badge = document.getElementById('tier-badge-'+ti);
+      if (badge) {
+        badge.textContent = count >= tiersComponentCount ? '\u2713' : count+'/'+tiersComponentCount;
+        badge.classList.toggle('complete', count >= tiersComponentCount);
+      }
+    });
+  }
+
+  function updateProgress() {
+    const count = touched.filter(Boolean).length;
+    document.getElementById('assessmentProgress').style.width = (count/COMPONENT_COUNT*100)+'%';
+    document.getElementById('assessmentProgressLabel').textContent = count+' / '+COMPONENT_COUNT+' bewertet';
+    updateTierBadges();
+    if (count === COMPONENT_COUNT) {
+      const banner = document.getElementById('celebrationBanner');
+      if (banner && !banner.classList.contains('shown')) {
+        banner.classList.add('show');
+        banner.classList.add('shown');
+        banner.style.cursor = 'pointer';
+        banner.onclick = () => { banner.classList.remove('show'); showScreen('results'); };
+        setTimeout(() => banner.classList.remove('show'), 6000);
+      }
+    }
+  }
+
+  // === CALCULATIONS ===
+  function getTierAvg(tierId) { const a=CONFIG.components.filter(x=>x.tier===tierId); return a.reduce((s,x)=>s+scores[x.id-1],0)/a.length; }
+  function getOverallScore() { let ws=0,tw=0; CONFIG.tiers.forEach(t=>{ws+=getTierAvg(t.id)*t.weight;tw+=t.weight;}); return (ws/tw/5)*100; }
+  function calcPriority(agent) { const gap=5-scores[agent.id-1]; const t=CONFIG.tiers.find(x=>x.id===agent.tier); const dc=CONFIG.components.filter(a=>a.related.includes(agent.id)).length; return gap*t.weight*(1+CONFIG.scoring.dependencyWeight*dc); }
+
+  // === MINI RADAR ===
+  function initMiniRadar() {
+    const primaryColor = CONFIG.theme.primaryColor;
+    const r = parseInt(primaryColor.slice(1,3), 16);
+    const g = parseInt(primaryColor.slice(3,5), 16);
+    const b = parseInt(primaryColor.slice(5,7), 16);
+    const bgColor = `rgba(${r},${g},${b},0.15)`;
+
+    miniRadarChart = new Chart(document.getElementById('miniRadar').getContext('2d'), {
+      type:'radar', data:{ labels:CONFIG.tiers.map(t=>t.name), datasets:[{data:CONFIG.tiers.map(t=>getTierAvg(t.id)),backgroundColor:bgColor,borderColor:primaryColor,borderWidth:2,pointBackgroundColor:primaryColor,pointRadius:4}]},
+      options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},scales:{r:{min:0,max:5,ticks:{stepSize:1,display:false},grid:{color:'rgba(0,0,0,0.08)'},pointLabels:{color:'#767D8C',font:{family:'Montserrat',size:11,weight:'600'}},angleLines:{color:'rgba(0,0,0,0.08)'}}}}
+    });
+  }
+  function updateMiniRadar() { if(!miniRadarChart)return; miniRadarChart.data.datasets[0].data=CONFIG.tiers.map(t=>getTierAvg(t.id)); miniRadarChart.update('none'); }
+  function updateTierAverages() {
+    document.getElementById('tierAverages').innerHTML = CONFIG.tiers.map(t=>{const a=getTierAvg(t.id); return `<div class="tier-avg-row"><div class="tier-avg-dot" style="background:${t.color}"></div><div class="tier-avg-label">${t.name}</div><div class="tier-avg-val" style="color:${t.color}">${a.toFixed(1)}</div></div>`;}).join('');
+  }
+
+  // === RESULTS ===
+  function showResults() { saveState(); showScreen('results'); }
+
+  function renderResults() {
+    const tabsContainer = document.getElementById('resultsTabs');
+    document.querySelectorAll('.results-tab-dynamic').forEach(t => t.remove());
+
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      const goalTab = document.createElement('button');
+      goalTab.className = 'results-tab results-tab-dynamic active';
+      goalTab.dataset.tab = 'needgoal';
+      goalTab.textContent = need.icon + ' ' + need.name;
+      goalTab.onclick = () => showResultTab('needgoal');
+      tabsContainer.insertBefore(goalTab, tabsContainer.firstChild);
+
+      const planTab = document.createElement('button');
+      planTab.className = 'results-tab results-tab-dynamic';
+      planTab.dataset.tab = 'plan';
+      planTab.textContent = '\uD83D\uDCCB 90-Tage-Plan';
+      planTab.onclick = () => showResultTab('plan');
+      goalTab.after(planTab);
+
+      document.getElementById('panel-needgoal').style.display = '';
+      document.getElementById('panel-plan').style.display = '';
+
+      document.querySelectorAll('.results-tab:not(.results-tab-dynamic)').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.results-panel:not(#panel-needgoal):not(#panel-plan)').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-needgoal').classList.add('active');
+
+      renderNeedResults();
+      render90DayPlan();
+    } else {
+      document.getElementById('panel-needgoal').style.display = 'none';
+      document.getElementById('panel-plan').style.display = 'none';
+      document.querySelector('.results-tab[onclick="showResultTab(\'radar\')"]').classList.add('active');
+      document.getElementById('panel-radar').classList.add('active');
+    }
+
+    renderOverallScore(); renderTierBars(); renderResultsRadar(); renderHeatMap(); renderDependencyFlow(); renderPriorities(); renderAgents();
+  }
+
+  function renderOverallScore() {
+    const sc = getOverallScore();
+    const el = document.getElementById('overallScoreNum');
+    const r = document.getElementById('scoreRing'), c = 2*Math.PI*74;
+    const col = sc>=70 ? 'var(--score-high)' : sc>=40 ? 'var(--score-mid)' : 'var(--score-low)';
+    el.style.color = col;
+    r.setAttribute('stroke-dasharray', c);
+    r.setAttribute('stroke', col);
+    const target = Math.round(sc);
+    const duration = 1200;
+    const start = performance.now();
+    function animate(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      r.setAttribute('stroke-dashoffset', c - (eased * sc / 100) * c);
+      if (progress < 1) requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+    const l = document.getElementById('overallScoreLabel');
+    const scoreLabels = CONFIG.labels.scoreLabels;
+    if(sc>=80) l.textContent=scoreLabels.excellent;
+    else if(sc>=60) l.textContent=scoreLabels.good;
+    else if(sc>=40) l.textContent=scoreLabels.expandable;
+    else l.textContent=scoreLabels.critical;
+  }
+
+  function renderTierBars() {
+    document.getElementById('tierBars').innerHTML = CONFIG.tiers.map(t=>{const a=getTierAvg(t.id);return `<div class="tier-bar-item"><div class="tier-bar-label">${t.name}</div><div class="tier-bar-track"><div class="tier-bar-fill" style="height:${a/5*100}%;background:${t.color}"></div></div><div class="tier-bar-val" style="color:${t.color}">${a.toFixed(1)}</div></div>`;}).join('');
+  }
+
+  function renderResultsRadar() {
+    const primaryColor = CONFIG.theme.primaryColor;
+    const r = parseInt(primaryColor.slice(1,3), 16);
+    const g = parseInt(primaryColor.slice(3,5), 16);
+    const b = parseInt(primaryColor.slice(5,7), 16);
+    const bgColor = `rgba(${r},${g},${b},0.2)`;
+    const tierCount = CONFIG.tiers.length;
+    const goalData = new Array(tierCount).fill(5);
+
+    if(resultsRadarChart)resultsRadarChart.destroy();
+    resultsRadarChart = new Chart(document.getElementById('resultsRadar').getContext('2d'), {
+      type:'radar', data:{ labels:CONFIG.tiers.map(t=>t.name), datasets:[
+        {label:'Ist-Zustand',data:CONFIG.tiers.map(t=>getTierAvg(t.id)),backgroundColor:bgColor,borderColor:primaryColor,borderWidth:2,pointBackgroundColor:primaryColor,pointRadius:5},
+        {label:'Ziel',data:goalData,backgroundColor:'rgba(0,0,0,0.03)',borderColor:'rgba(0,0,0,0.15)',borderWidth:1,borderDash:[5,5],pointRadius:0}
+      ]},
+      options:{responsive:true,plugins:{legend:{labels:{color:'#767D8C',font:{family:'Montserrat'}}}},scales:{r:{min:0,max:5,ticks:{stepSize:1,color:'#767D8C',backdropColor:'rgba(255,255,255,0.8)'},grid:{color:'rgba(0,0,0,0.08)'},pointLabels:{color:'#1F1F1F',font:{family:'Montserrat',size:13,weight:'600'}},angleLines:{color:'rgba(0,0,0,0.08)'}}}}
+    });
+  }
+
+  function renderHeatMap() {
+    const sorted=[...CONFIG.components].sort((a,b)=>calcNeedPriority(b, activeNeed)-calcNeedPriority(a, activeNeed));
+    const mx=Math.max(...sorted.map(a=>calcNeedPriority(a, activeNeed)));
+    const need = activeNeed ? CONFIG.needs.find(n => n.id === activeNeed) : null;
+    document.getElementById('heatmapBody').innerHTML = sorted.map(a=>{
+      const s=scores[a.id-1],t=CONFIG.tiers.find(x=>x.id===a.tier),pr=calcNeedPriority(a, activeNeed),pp=mx>0?pr/mx*100:0;
+      const cls=s<=2?'low':s===3?'mid':'high';
+      const needBadge = need ? (need.primary.includes(a.id) ? `<span style="color:${need.color};font-size:0.65rem;margin-left:4px">\u25CF Primaer</span>` : need.secondary.includes(a.id) ? `<span style="color:var(--gray);font-size:0.65rem;margin-left:4px">\u25CB Sekundaer</span>` : '') : '';
+      return `<tr onclick="jumpToAgent(${a.id})" title="Klicke um ${a.name} zu bearbeiten"><td><strong>${a.id}. ${a.name}</strong>${needBadge}</td><td><span class="heatmap-tier-badge" style="background:${t.color}">${t.name}</span></td><td><span class="heatmap-score ${cls}">${s}</span></td><td style="font-size:0.75rem;color:var(--gray-light)">${a.levels[s-1]}</td><td><div class="heatmap-priority-bar"><div class="heatmap-priority-fill" style="width:${pp}%"></div></div></td></tr>`;
+    }).join('');
+  }
+
+  function renderDependencyFlow() {
+    const W=1100, H=700;
+    const tierIds = CONFIG.tiers.map(t => t.id);
+    const tierX={};
+    const spacing = W / (tierIds.length + 1);
+    tierIds.forEach((id, i) => { tierX[id] = Math.round(spacing * (i + 1)); });
+    const pos={};
+    CONFIG.tiers.forEach(t=>{
+      CONFIG.components.filter(a=>a.tier===t.id).forEach((a,i)=>{
+        pos[a.id]={x:tierX[t.id], y:90+i*115};
+      });
+    });
+    let lines='', nodes='';
+    CONFIG.components.forEach(a=>{
+      const p=pos[a.id];
+      a.related.forEach(r=>{
+        if(r>a.id && pos[r]) {
+          lines+=`<line class="dep-line" data-from="${a.id}" data-to="${r}" x1="${p.x}" y1="${p.y}" x2="${pos[r].x}" y2="${pos[r].y}"/>`;
+        }
+      });
+    });
+    CONFIG.components.forEach(a=>{
+      const p=pos[a.id], s=scores[a.id-1], t=CONFIG.tiers.find(x=>x.id===a.tier);
+      const col=s<=2?'#EF4444':s===3?'#F59E0B':'#22C55E';
+      const depCount=CONFIG.components.filter(x=>x.related.includes(a.id)).length;
+      const radius=Math.min(36, 26+depCount*1.8);
+      nodes+=`<g class="dep-node" data-id="${a.id}" onmouseenter="hlDeps(${a.id})" onmouseleave="clrDeps()" onclick="hlDeps(${a.id})">
+        <circle cx="${p.x}" cy="${p.y}" r="${radius}" fill="${col}" opacity="0.9" stroke="${t.color}" stroke-width="3"/>
+        <text x="${p.x}" y="${p.y+5}" text-anchor="middle">${a.id}</text>
+        <text class="dep-name-label" x="${p.x}" y="${p.y+radius+16}" text-anchor="middle">${a.name}</text>
+      </g>`;
+    });
+    const tl=CONFIG.tiers.map(t=>`<text x="${tierX[t.id]}" y="32" text-anchor="middle" fill="${t.color}" font-size="15" font-weight="800" font-family="Montserrat">${t.name}</text>`).join('');
+    const legend=`<g transform="translate(30,${H-40})">
+      <circle cx="10" cy="0" r="9" fill="#EF4444" opacity="0.9"/><text class="dep-legend-text" x="26" y="4">Score 1-2 (Kritisch)</text>
+      <circle cx="180" cy="0" r="9" fill="#F59E0B" opacity="0.9"/><text class="dep-legend-text" x="196" y="4">Score 3 (Ausbaufaehig)</text>
+      <circle cx="380" cy="0" r="9" fill="#22C55E" opacity="0.9"/><text class="dep-legend-text" x="396" y="4">Score 4-5 (Gut)</text>
+      <text class="dep-legend-hint" x="580" y="4">Groessere Kreise = mehr abhaengige Bausteine | Hover fuer Details</text>
+    </g>`;
+    document.getElementById('depFlow').innerHTML=`<svg viewBox="0 0 ${W} ${H}">${tl}${lines}${nodes}${legend}</svg>`;
+  }
+  function hlDeps(id){const a=CONFIG.components[id-1],tt=document.getElementById('tooltip');document.querySelectorAll('.dep-line').forEach(l=>{const f=+l.dataset.from,t=+l.dataset.to;if(f===id||t===id)l.classList.add('highlight');else l.style.opacity='0.15';});document.querySelectorAll('.dep-node').forEach(n=>{const nid=+n.dataset.id;if(nid!==id&&!a.related.includes(nid)&&!CONFIG.components[nid-1].related.includes(id))n.style.opacity='0.2';});const rn=a.related.map(r=>CONFIG.components[r-1].name).join(', '),dep=CONFIG.components.filter(x=>x.related.includes(id)).map(x=>x.name);tt.innerHTML=`<strong>${a.name}</strong> (Score: ${scores[id-1]})<br><span style="color:var(--gray-light)">Verbunden: ${rn}</span>${dep.length?'<br><span style="color:var(--primary-light)">Beeinflusst: '+dep.join(', ')+'</span>':''}`;tt.classList.add('visible');document.addEventListener('mousemove',mvTT);}
+  function mvTT(e){const t=document.getElementById('tooltip');t.style.left=(e.clientX+16)+'px';t.style.top=(e.clientY-10)+'px';}
+  function clrDeps(){document.querySelectorAll('.dep-line').forEach(l=>{l.classList.remove('highlight');l.style.opacity='';});document.querySelectorAll('.dep-node').forEach(n=>n.style.opacity='');document.getElementById('tooltip').classList.remove('visible');document.removeEventListener('mousemove',mvTT);}
+
+  function renderPriorities() {
+    const top5=[...CONFIG.components].map(a=>({...a,priority:calcNeedPriority(a, activeNeed),score:scores[a.id-1]})).sort((a,b)=>b.priority-a.priority).slice(0,5);
+    document.getElementById('prioritiesList').innerHTML = top5.map((a,i)=>{
+      const t=CONFIG.tiers.find(x=>x.id===a.tier),dep=CONFIG.components.filter(x=>x.related.includes(a.id)),imp=(a.priority*20).toFixed(0);
+      return `<div class="priority-card"><div class="priority-head"><div class="priority-rank">#${i+1}</div><div class="priority-info"><h4>${a.name} <span class="heatmap-tier-badge" style="background:${t.color};font-size:0.65rem;vertical-align:middle;margin-left:6px">${t.name}</span></h4><p>Level ${a.score} (${a.levels[a.score-1]}) \u00B7 ${dep.length} abhaengige Bausteine</p></div><div class="priority-impact"><div class="val">${imp}</div><div class="lbl">Impact</div></div></div><div class="priority-tip"><strong>Naechster Schritt:</strong> ${a.recommendations[a.score-1]}</div><div class="priority-agent"><strong>KI-Agent-Idee:</strong> ${a.aiAgent}</div></div>`;
+    }).join('');
+  }
+
+  function renderAgents() {
+    const sorted=[...CONFIG.components].map(a=>({...a,score:scores[a.id-1]})).filter(a=>a.score<=3).sort((a,b)=>calcNeedPriority(b, activeNeed)-calcNeedPriority(a, activeNeed)).slice(0,8);
+    const el=document.getElementById('agentsList');
+    if(sorted.length===0){el.innerHTML='<div style="text-align:center;padding:40px;color:var(--gray-light)"><h3 style="color:var(--white);margin-bottom:8px">Glueckwunsch!</h3><p>Alle Bausteine sind auf Level 4+. Du brauchst keine dringenden KI-Agenten - aber KI kann auch bei Optimierung helfen.</p></div>';return;}
+    el.innerHTML = `<p style="color:var(--gray-light);margin-bottom:20px;font-size:0.9rem">Basierend auf deinen Schwachstellen: Diese KI-Agenten haetten den groessten Impact auf dein Marketing-System.</p>`+
+      sorted.map(a=>{const t=CONFIG.tiers.find(x=>x.id===a.tier);
+      return `<div class="agent-card"><div class="agent-icon" style="background:${t.color}">${a.id}</div><div><h4>${a.name}-Agent <span class="heatmap-tier-badge" style="background:${t.color};font-size:0.65rem;vertical-align:middle;margin-left:6px">Score: ${a.score}/5</span></h4><div class="agent-desc">${a.aiAgent}</div><div class="agent-prompt-wrap"><div class="agent-prompt">${a.aiPrompt}</div><button class="btn-copy-prompt" onclick="copyAgentPrompt(this)" title="Prompt kopieren">&#128203;</button></div></div></div>`;
+    }).join('');
+  }
+
+  function showResultTab(tab) {
+    document.querySelectorAll('.results-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.results-panel').forEach(p=>p.classList.remove('active'));
+    // Find static tab by onclick attribute
+    const tabEl = document.querySelector(`.results-tab[onclick*="'${tab}'"]`);
+    if (tabEl) tabEl.classList.add('active');
+    // Find dynamic tab by data-tab attribute
+    const dynTab = document.querySelector(`.results-tab-dynamic[data-tab="${tab}"]`);
+    if (dynTab) dynTab.classList.add('active');
+    const panel = document.getElementById('panel-'+tab);
+    if (panel) panel.classList.add('active');
+  }
+
+  // === EXPORT ===
+  function renderExport() {
+    const lines=[];
+    const exportLabels = CONFIG.labels.exportLabels || {};
+
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      lines.push((exportLabels.goalPrefix || 'Mein Hauptziel: ') + need.name + ' (' + need.question + ')', '');
+    }
+
+    lines.push(exportLabels.preamble || ('Ich habe ein ' + CONFIG.labels.assessmentTitle + ' durchgefuehrt mit ' + COMPONENT_COUNT + ' Bausteinen in ' + CONFIG.tiers.length + ' Kategorien.'),'','ERGEBNISSE:','');
+    CONFIG.tiers.forEach(t=>{
+      lines.push(`--- ${t.name.toUpperCase()} (Schnitt: ${getTierAvg(t.id).toFixed(1)}/5) ---`);
+      CONFIG.components.filter(a=>a.tier===t.id).forEach(a=>{
+        const s=scores[a.id-1]; lines.push(`${a.name}: ${s}/5 (${a.levels[s-1]})`);
+        if(s<=3){ const unmet=a.theses.filter((_,ti)=>!checkStates[a.id-1][ti]);
+          if(unmet.length)lines.push(`  Noch offen: "${unmet[0]}"`);
+        }
+      }); lines.push('');
+    });
+    lines.push('Gesamt-Score: '+Math.round(getOverallScore())+'%','');
+    lines.push(exportLabels.topAgentsHeader || 'TOP KI-AGENT-EMPFEHLUNGEN:');
+    [...CONFIG.components].filter(a=>scores[a.id-1]<=3).sort((a,b)=>calcNeedPriority(b, activeNeed)-calcNeedPriority(a, activeNeed)).slice(0,5).forEach((a,i)=>{
+      lines.push(`${i+1}. ${a.name}-Agent: ${a.aiAgent}`);
+    });
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      lines.push('', (exportLabels.goalReiteration || 'Mein Hauptziel ist: ') + need.name + '. ' + need.question);
+      lines.push(exportLabels.needAnalysisRequest || 'Bitte analysiere meine Staerken und Schwaechen SPEZIELL im Hinblick auf dieses Ziel. Erstelle einen priorisierten 90-Tage-Aktionsplan, der mich diesem Ziel naeher bringt, mit konkreten KI-Agent-Einsatzmoeglichkeiten. Beruecksichtige die Abhaengigkeiten zwischen den Bausteinen.');
+    } else {
+      lines.push('', exportLabels.generalAnalysisRequest || 'Bitte analysiere meine Staerken und Schwaechen. Erstelle einen priorisierten 90-Tage-Aktionsplan mit konkreten KI-Agent-Einsatzmoeglichkeiten fuer jede Schwachstelle. Beruecksichtige die Abhaengigkeiten zwischen den Bausteinen.');
+    }
+    document.getElementById('promptPreview').textContent = lines.join('\n');
+
+    const scoreStr=[]; for(let i=0;i<COMPONENT_COUNT;i+=5)scoreStr.push(scores.slice(i,i+5).join(''));
+    let shareUrl = window.location.origin+window.location.pathname+'?s='+scoreStr.join('-');
+    if (activeNeed) shareUrl += '&need=' + activeNeed;
+    document.getElementById('shareUrl').textContent = shareUrl;
+
+    if (activeNeed) {
+      const need = CONFIG.needs.find(n => n.id === activeNeed);
+      document.getElementById('ctaTitle').textContent = need.cta.title;
+      document.getElementById('ctaText').textContent = need.cta.text;
+    } else {
+      const weak=CONFIG.tiers.reduce((w,t)=>getTierAvg(t.id)<getTierAvg(w.id)?t:w,CONFIG.tiers[0]);
+      const ctas=CONFIG.export.defaultCtas;
+      const c=ctas[weak.id]; document.getElementById('ctaTitle').textContent=c.title; document.getElementById('ctaText').textContent=c.text;
+    }
+  }
+
+  function copyPrompt(){navigator.clipboard.writeText(document.getElementById('promptPreview').textContent).then(()=>{const f=document.getElementById('copyFeedback');f.classList.add('show');setTimeout(()=>f.classList.remove('show'),2000);});}
+  function copyShareUrl(){navigator.clipboard.writeText(document.getElementById('shareUrl').textContent).then(()=>{const f=document.getElementById('shareFeedback');f.classList.add('show');setTimeout(()=>f.classList.remove('show'),2000);});}
+
+  function copyAgentPrompt(btn) {
+    const text = btn.previousElementSibling.textContent.replace('Beispiel-Prompt: ', '');
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '\u2713';
+      btn.style.color = 'var(--score-high)';
+      setTimeout(() => { btn.textContent = '\uD83D\uDCCB'; btn.style.color = ''; }, 1500);
+    });
+  }
+
+  // === RESET ===
+  function resetAssessment() {
+    if(!confirm('Alle Bewertungen zuruecksetzen? Das kann nicht rueckgaengig gemacht werden.')) return;
+    scores = new Array(COMPONENT_COUNT).fill(1);
+    checkStates = Array.from({length: COMPONENT_COUNT}, () => new Array(THESES_COUNT).fill(false));
+    touched = new Array(COMPONENT_COUNT).fill(false);
+    activeNeed = null;
+    localStorage.removeItem(STORAGE_PREFIX + '-scores');
+    localStorage.removeItem(STORAGE_PREFIX + '-checks');
+    localStorage.removeItem(STORAGE_PREFIX + '-touched');
+    localStorage.removeItem(STORAGE_PREFIX + '-need');
+    document.getElementById('tierTabs').innerHTML = '';
+    document.getElementById('sliderGroups').innerHTML = '';
+    if(miniRadarChart){miniRadarChart.destroy();miniRadarChart=null;}
+    initAssessment();
+  }
+
+  // === PYRAMID ===
+  function renderPyramid() {
+    const container = document.getElementById('pyramidContainer');
+    if (!container) return;
+    const tierCount = CONFIG.tiers.length;
+    // Render tiers in reverse order (smallest/top first)
+    const reversed = [...CONFIG.tiers].reverse();
+    container.innerHTML = reversed.map((tier, i) => {
+      const width = 50 + (i / (tierCount - 1)) * 48; // 50% to 98%
+      const tierIdx = CONFIG.tiers.indexOf(tier);
+      const compCount = CONFIG.components.filter(c => c.tier === tier.id).length;
+      return `<div class="pyramid-tier" style="width:${width}%;background:var(--tier-${tier.id});cursor:pointer" onclick="jumpToTier(${tierIdx})">${tier.name}<span class="pyramid-count">${compCount} ${CONFIG.labels.componentLabel}</span></div>`;
+    }).join('');
+  }
+
+  // === EXPOSE GLOBALS ===
+  window.showScreen = showScreen;
+  window.jumpToTier = jumpToTier;
+  window.jumpToAgent = jumpToAgent;
+  window.showResults = showResults;
+  window.showResultTab = showResultTab;
+  window.resetAssessment = resetAssessment;
+  window.selectNeed = selectNeed;
+  window.startKomplettCheck = startKomplettCheck;
+  window.showNeedsLanding = showNeedsLanding;
+  window.copyPrompt = copyPrompt;
+  window.copyShareUrl = copyShareUrl;
+  window.copyAgentPrompt = copyAgentPrompt;
+  window.toggleThese = toggleThese;
+  window.updateSlider = updateSlider;
+  window.hlDeps = hlDeps;
+  window.clrDeps = clrDeps;
+
+  // === INIT ===
+  loadState();
+  renderNeedLanding();
+  renderPyramid();
+  initAssessment();
+  if (activeNeed) applyNeedContext();
+
+})(CONFIG);
+
+</script>
+</body>
+</html>
