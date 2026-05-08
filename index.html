@@ -204,7 +204,8 @@ body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--b
 .tier-avg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .tier-avg-label { font-size: 0.8rem; color: var(--gray-light); flex: 1; }
 .tier-avg-val { font-weight: 700; font-size: 0.9rem; }
-.assessment-nav { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
+.assessment-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 12px; flex-wrap: wrap; }
+.assessment-cta-hint { margin-top: 12px; font-size: 0.9rem; color: var(--gray-light); font-weight: 600; text-align: center; }
 /* Progress-bar: fixed am unteren Rand des Viewports, sticky während des Scrollens */
 .progress-bar { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 12px; padding: 14px 28px; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-top: 1px solid var(--gray-dark); z-index: 99; margin: 0; }
 .progress-track { flex: 1; height: 6px; background: var(--gray-dark); border-radius: 3px; overflow: hidden; }
@@ -212,10 +213,6 @@ body { font-family: 'Montserrat', -apple-system, sans-serif; background: var(--b
 .progress-label { font-size: 0.875rem; color: var(--gray-light); font-weight: 700; min-width: 80px; text-align: right; }
 /* Body padding-bottom, damit Content nicht hinter der fixen Progress-Leiste verschwindet */
 body { padding-bottom: 64px; }
-/* "Ergebnisse"-Link in der Top-Nav rot hervorheben (CTA, weil Bottom-Button entfernt) */
-.nav-links a[onclick*="results"] { color: #FF1A1A; font-weight: 700; }
-.nav-links a[onclick*="results"]:hover { color: #E01515; }
-
 /* Results */
 .results-header { text-align: center; margin-bottom: 40px; }
 .results-header h2 { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
@@ -434,7 +431,6 @@ body { padding-bottom: 56px; }
   <div class="nav-links">
     <a href="#" onclick="showScreen('landing')">Start</a>
     <a href="#" onclick="showScreen('assessment')">Assessment</a>
-    <a href="#" onclick="showScreen('results')">Ergebnisse</a>
     <a href="#" onclick="showScreen('export')">Export</a>
   </div>
 </nav>
@@ -491,8 +487,10 @@ body { padding-bottom: 56px; }
       <div id="sliderGroups"></div>
       <div class="assessment-nav">
         <button class="btn-secondary" onclick="showScreen('landing')">&#8592; Zurück</button>
+        <button class="btn-primary" onclick="tryShowResults()">Auswertung anzeigen &#8594;</button>
         <button class="btn-reset" onclick="resetAssessment()">&#8634; Zurücksetzen</button>
       </div>
+      <div class="assessment-cta-hint" id="assessmentCtaHint" style="display:none"></div>
     </div>
     <div class="radar-sidebar">
       <div class="radar-card">
@@ -991,6 +989,8 @@ const CONFIG = {"meta":{"id":"claude-code-for-business","version":"2.1.0","title
     document.getElementById('assessmentProgressLabel').textContent = count+' / '+COMPONENT_COUNT+' bewertet';
     updateTierBadges();
     if (count === COMPONENT_COUNT) {
+      const hint = document.getElementById('assessmentCtaHint');
+      if (hint) hint.style.display = 'none';
       const banner = document.getElementById('celebrationBanner');
       if (banner && !banner.classList.contains('shown')) {
         banner.classList.add('show');
@@ -1027,6 +1027,20 @@ const CONFIG = {"meta":{"id":"claude-code-for-business","version":"2.1.0","title
 
   // === RESULTS ===
   function showResults() { saveState(); showScreen('results'); }
+
+  function tryShowResults() {
+    const remaining = COMPONENT_COUNT - touched.filter(Boolean).length;
+    const hint = document.getElementById('assessmentCtaHint');
+    if (remaining === 0) {
+      if (hint) hint.style.display = 'none';
+      showResults();
+    } else {
+      if (hint) {
+        hint.textContent = 'Bitte bewerte zuerst alle Bausteine – noch ' + remaining + ' offen.';
+        hint.style.display = 'block';
+      }
+    }
+  }
 
   function renderResults() {
     const tabsContainer = document.getElementById('resultsTabs');
@@ -1305,6 +1319,7 @@ const CONFIG = {"meta":{"id":"claude-code-for-business","version":"2.1.0","title
   window.jumpToTier = jumpToTier;
   window.jumpToAgent = jumpToAgent;
   window.showResults = showResults;
+  window.tryShowResults = tryShowResults;
   window.showResultTab = showResultTab;
   window.resetAssessment = resetAssessment;
   window.selectNeed = selectNeed;
